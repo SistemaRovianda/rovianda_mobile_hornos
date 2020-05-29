@@ -1,0 +1,22 @@
+$color-text-primary: #575552;
+
+.title-menu,
+.text-dark {
+  color: $color-text-primary;
+}
+
+.container {
+  padding: 10px;
+}
+
+.item {
+  width: 100%;
+  height: 5vh;
+  background-color: $color-text-primary;
+  color: #ffffff;
+}
+
+.products-container {
+  height: 80vh;
+  overflow: auto;
+}

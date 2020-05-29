@@ -1,0 +1,77 @@
+<title-header
+  [titlePath]="'Regresar'"
+  [path]="'/'"
+  [title]="'Hornos'"
+></title-header>
+
+<ion-content>
+  <div class="container">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <h1 class="title-menu">Productos</h1>
+        </ion-col>
+      </ion-row>
+      <ion-col size="12" *ngIf="!products$ | async" class="products-container">
+        <ion-row size="12">
+          <ion-col class="text-dark" size="1"></ion-col>
+          <ion-col class="text-dark" size="3">Pcc</ion-col>
+          <ion-col class="text-dark" size="3">Producto</ion-col>
+          <ion-col class="text-dark" size="2">Lote</ion-col>
+          <ion-col class="text-dark" size="3">Fecha</ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-card
+            class="item ion-text-center"
+            *ngFor="let product of products$ | async"
+          >
+            <ion-row>
+              <ion-col class="text-dark" size="1">
+                <ion-icon
+                  lot="start"
+                  class="label-button"
+                  src="/assets/icons/clipboard-outline.svg"
+                ></ion-icon
+              ></ion-col>
+              <ion-col size="3">{{ product.pcc }}</ion-col>
+              <ion-col size="3">{{ product.product.id }}</ion-col>
+              <ion-col size="2">{{ product.newLotId }}</ion-col>
+              <ion-col size="3">{{ product.date }}</ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-row>
+      </ion-col>
+      <ion-col *ngIf="products$ | async" class="text-dark"
+        >No existen productos</ion-col
+      >
+    </ion-grid>
+    <div class="ion-justify-content-center">
+      <ion-col>
+        <ion-row class="ion-justify-content-around btn">
+          <div class="ion-justify-content-center btn">
+            <ion-button
+              expand="block"
+              color="primary"
+              style="text-transform: none;"
+              size="large"
+            >
+              Agregar nuevo registro
+            </ion-button>
+          </div>
+
+          <div class="ion-justify-content-center btn">
+            <ion-button
+              expand="block"
+              color="primary"
+              style="text-transform: none;"
+              size="large"
+            >
+              Salir
+            </ion-button>
+          </div>
+        </ion-row>
+      </ion-col>
+    </div>
+  </div>
+</ion-content>
