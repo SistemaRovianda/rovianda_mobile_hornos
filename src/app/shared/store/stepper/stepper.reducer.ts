@@ -5,7 +5,7 @@ import { SteppersInterface } from "../../models/stepper.interface";
 const STATE_INITIAL_STEPPER: SteppersInterface = {
   steps: [
     {
-      value: false,
+      value: true,
     },
     {
       value: false,

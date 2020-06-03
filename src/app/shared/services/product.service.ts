@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 
 import { Observable } from "rxjs";
-import { Products } from "../models/oven.interface";
+import { Products, NewProduct } from "../models/oven.interface";
 
 @Injectable({
   providedIn: "root",
@@ -17,5 +17,9 @@ export class ProductService {
 
   getProducts(): Observable<any> {
     return this.http.get<Products[]>(`${this.url}/products`);
+  }
+
+  newProduct(payload: NewProduct): Observable<any> {
+    return this.http.post<any>(`${this.url}/products`, { payload });
   }
 }

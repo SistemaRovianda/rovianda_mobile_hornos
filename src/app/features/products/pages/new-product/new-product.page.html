@@ -1,0 +1,59 @@
+<title-header
+  [titlePath]="'Salir'"
+  [path]="'/'"
+  [title]="'Hornos'"
+></title-header>
+
+<ion-content>
+  <div class="container">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <div *ngIf="!(next$ |async)" class="page">
+            <general-data-form
+              (onSubmit)="onSubmit($event)"
+            ></general-data-form>
+          </div>
+          <div *ngIf="next$ |async" class="page">
+            <revision-data-form
+              (onSubmit)="onSubmit($event)"
+            ></revision-data-form>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-grid>
+    <div class="container">
+      <ion-row class="row-stepper">
+        <ion-col size="12">
+          <stepper></stepper>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center" *ngIf="!(next$ |async)">
+        <ion-button
+          color="secondary"
+          (click)="validateForm()"
+          [disabled]="disabledButton"
+        >
+          <ion-grid>
+            <ion-col size="12">Siguiente</ion-col>
+          </ion-grid>
+        </ion-button>
+      </ion-row>
+      <ion-row class="ion-justify-content-center" *ngIf="next$ |async">
+        <ion-button
+          color="secondary"
+          (click)="addProduct()"
+          [disabled]="disabledSaveButton"
+        >
+          <ion-grid>
+            <ion-col *ngIf="!(loading$|async)" size="12">Guardar</ion-col>
+            <ion-spinner *ngIf="loading$|async" name="crescent"></ion-spinner>
+          </ion-grid>
+        </ion-button>
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>

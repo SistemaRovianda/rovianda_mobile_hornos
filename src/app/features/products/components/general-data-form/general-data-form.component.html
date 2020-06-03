@@ -1,0 +1,81 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <ion-row> <h1 class="title-menu">Datos generales</h1></ion-row>
+  <ion-grid fixed>
+    <ion-row class="ion-justify-content-around">
+      <ion-col size="5">
+        <ion-row>
+          <ion-item class="form-input ion-no-padding">
+            <ion-label class="ion-label" position="floating"
+              >Tiempo estimado*</ion-label
+            >
+            <ion-input
+              placeholder="Ingresa tiempo"
+              formControlName="estimatedTime"
+            >
+            </ion-input>
+          </ion-item>
+        </ion-row>
+        <div class="error">
+          <ion-label
+            *ngIf="
+              form.hasError('required', 'estimatedTime') &&
+              (form.controls.estimatedTime.touched ||
+                form.controls.estimatedTime.dirty)
+            "
+          >
+            Este campo es requerido.
+          </ion-label>
+        </div>
+      </ion-col>
+      <ion-col size="5">
+        <ion-row>
+          <ion-item class="form-input ion-no-padding">
+            <ion-label class="ion-label" position="floating">Lote*</ion-label>
+            <ion-input placeholder="Ingresa lote" formControlName="newLote">
+            </ion-input>
+          </ion-item>
+        </ion-row>
+        <div class="error">
+          <ion-label
+            *ngIf="
+              form.hasError('required', 'newLote') &&
+              (form.controls.newLote.touched || form.controls.newLote.dirty)
+            "
+          >
+            Este campo es requerido.
+          </ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-around">
+      <ion-col size="5">
+        <ion-row>
+          <ion-item class="form-input ion-no-padding">
+            <ion-label class="ion-label" position="floating">PCC*</ion-label>
+            <ion-input placeholder="Ingresa PCC" formControlName="pcc">
+            </ion-input>
+          </ion-item>
+        </ion-row>
+        <div class="error">
+          <ion-label
+            *ngIf="
+              form.hasError('required', 'pcc') &&
+              (form.controls.pcc.touched || form.controls.pcc.dirty)
+            "
+          >
+            Este campo es requerido.
+          </ion-label>
+        </div>
+      </ion-col>
+      <ion-col size="5">
+        <ion-row>
+          <ion-item class="form-input ion-no-padding">
+            <ion-label class="ion-label" position="floating">Fecha*</ion-label>
+            <ion-input formControlName="date"> </ion-input>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</form>
