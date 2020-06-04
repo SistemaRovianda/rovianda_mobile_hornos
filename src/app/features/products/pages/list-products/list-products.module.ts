@@ -5,12 +5,14 @@ import { IonicModule } from "@ionic/angular";
 import { TitleHeaderModule } from "src/app/shared/components/header/header.module";
 
 import { ListProductsComponent } from "./list-products.component";
+import { StepperModule } from "src/app/shared/components/stepper/stepper.module";
 
 const COMMON_IMPORTS = [
   CommonModule,
   IonicModule,
   TitleHeaderModule,
   RouterModule,
+  StepperModule,
 ];
 
 const COMMON_DECLARATIONS = [ListProductsComponent];
