@@ -16,7 +16,7 @@
           </div>
           <div *ngIf="next$ |async" class="page">
             <revision-data-form
-              (onSubmit)="onSubmit($event)"
+              (onSubmit)="onSubmitRevison($event)"
             ></revision-data-form>
           </div>
         </ion-col>
@@ -31,28 +31,46 @@
           <stepper></stepper>
         </ion-col>
       </ion-row>
-      <ion-row class="ion-justify-content-center" *ngIf="!(next$ |async)">
+      <ion-row class="ion-justify-content-around" *ngIf="!(next$ |async)" size="12">
         <ion-button
           color="secondary"
-          (click)="validateForm()"
-          [disabled]="disabledButton"
+          size="large"
         >
           <ion-grid>
-            <ion-col size="12">Siguiente</ion-col>
+            <ion-col>Cancelar</ion-col>
+          </ion-grid>
+        </ion-button>
+        <ion-button
+          color="primary"
+          (click)="validateForm()"
+          [disabled]="disabledButton"
+          size="large"
+        >
+          <ion-grid>
+            <ion-col>Siguiente</ion-col>
           </ion-grid>
         </ion-button>
       </ion-row>
-      <ion-row class="ion-justify-content-center" *ngIf="next$ |async">
+      <ion-row class="ion-justify-content-around" *ngIf="next$ |async">
         <ion-button
-          color="secondary"
-          (click)="addProduct()"
-          [disabled]="disabledSaveButton"
+        color="secondary"
+        size="large"
+        (click)="addProduct()"
+        [disabled]="disabledSaveButton"
         >
           <ion-grid>
             <ion-col *ngIf="!(loading$|async)" size="12">Guardar</ion-col>
             <ion-spinner *ngIf="loading$|async" name="crescent"></ion-spinner>
           </ion-grid>
         </ion-button>
+        <ion-button
+        color="primary"
+        size="large"
+      >
+        <ion-grid>
+          <ion-col>Usuarios</ion-col>
+        </ion-grid>
+      </ion-button>
       </ion-row>
     </div>
   </ion-grid>

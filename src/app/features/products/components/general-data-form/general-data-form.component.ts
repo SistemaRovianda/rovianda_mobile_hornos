@@ -16,7 +16,7 @@ export class GeneralDataFormComponent implements OnInit {
       estimatedTime: ["", Validators.required],
       newLote: ["", Validators.required],
       pcc: ["", Validators.required],
-      productId: [""],
+      productId: ["",Validators.required],
       date: [
         { value: moment(new Date()).format("DD/MM/YYYY"), disabled: true },
       ],
@@ -26,6 +26,12 @@ export class GeneralDataFormComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit() {
-    this.submit.emit(this.form.value);
+    const { ...values } = this.form.value;
+    const payload = {
+      ...values,
+      date: moment(new Date()).format("DD/MM/YYYY"),
+    };
+
+    this.submit.emit(payload);
   }
 }

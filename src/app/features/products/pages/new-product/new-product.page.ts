@@ -49,6 +49,8 @@ export class NewProductPageComponent implements OnInit {
 
   onSubmit(payload) {
     this.generalData = payload;
+    console.log(payload);
+
     setTimeout(() => {
       this.revisionDataForm.form.valueChanges.subscribe(() => {
         this.disabledSaveButton = this.revisionDataForm.form.invalid;
@@ -72,12 +74,11 @@ export class NewProductPageComponent implements OnInit {
 
   addProduct() {
     this.revisionDataForm.onSubmit();
-    const { ...values } = this.generalData;
-
     const product = {
-      ...values,
-      firstRevision: this.revisionData,
+      ...this.generalData,
+      firstRevision: { ...this.revisionData },
     };
+
     this.store.dispatch(fromActionsProduct.newProduct({ product: product }));
   }
 }
