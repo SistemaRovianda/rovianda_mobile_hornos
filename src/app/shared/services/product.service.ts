@@ -20,6 +20,7 @@ export class ProductService {
   }
 
   newProduct(payload: NewProduct): Observable<any> {
-    return this.http.post<any>(`${this.url}/products`, { payload });
+    console.log("nuevo registro: ", payload);
+    return this.http.post<any>(`${this.url}/product`, { payload });
   }
 }

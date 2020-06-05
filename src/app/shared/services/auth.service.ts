@@ -60,7 +60,7 @@ export class AuthService {
   isAuth(): boolean {
     return (
       localStorage.getItem("token") != null ||
-      localStorage.getItem("role") == "Almacen"
+      localStorage.getItem("role") == "OVEN"
     );
   }
 

@@ -1,12 +1,12 @@
 <title-header
-  [titlePath]="'Regresar'"
+  [titlePath]="'Salir'"
   [path]="'/'"
   [title]="'Hornos'"
 ></title-header>
 
 <ion-content>
   <div class="container">
-    <ion-grid>
+    <ion-grid class="grid-container--main">
       <ion-row>
         <ion-col size="12">
           <h1 class="title-menu">Productos</h1>
@@ -58,17 +58,6 @@
               href="/product/new-product"
             >
               Agregar nuevo registro
-            </ion-button>
-          </div>
-
-          <div class="ion-justify-content-center btn">
-            <ion-button
-              expand="block"
-              color="primary"
-              style="text-transform: none;"
-              size="large"
-            >
-              Salir
             </ion-button>
           </div>
         </ion-row>

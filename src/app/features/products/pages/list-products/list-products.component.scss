@@ -1,8 +1,26 @@
 $color-text-primary: #575552;
+$color-text-error: #830f0f;
 
 .title-menu,
 .text-dark {
   color: $color-text-primary;
+  width: 100%;
+}
+
+.grid-container--main {
+  height: 70vh;
+  :nth-child(2) {
+    align-self: center;
+    color: $color-text-error;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-content: center;
+    align-content: center;
+    height: 150px;
+  }
 }
 
 .container {
