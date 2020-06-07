@@ -26,11 +26,19 @@
     <div class="error">
       <ion-label
         *ngIf="
-          email.errors &&
+          form.hasError('required', 'email') &&
           (form.controls.email.touched || form.controls.email.dirty)
         "
       >
-        Por favor ingresa un correo electr&oacute;nico v&aacute;lido
+        Este campo es requerido.
+      </ion-label>
+      <ion-label
+        *ngIf="
+          form.hasError('email', 'email') &&
+          (form.controls.email.touched || form.controls.email.dirty)
+        "
+      >
+        Por favor ingresa un correo electrónico válido
       </ion-label>
     </div>
     <ion-row>
@@ -48,11 +56,21 @@
     <div class="error">
       <ion-label
         *ngIf="
-          password.errors &&
+          form.hasError('required', 'password') &&
           (form.controls.password.touched || form.controls.password.dirty)
         "
       >
-        Por favor ingresa una contraseña válida
+        Este campo es requerido.
+      </ion-label>
+      <ion-label
+        *ngIf="
+          form.hasError('pattern', 'password') &&
+          !form.hasError('required', 'password') &&
+          (form.controls.password.touched || form.controls.password.dirty)
+        "
+      >
+        Debe contener letras minúsculas (a-z), mayúsculas (A-Z), números (0-9) y
+        caracteres especiales ( *-+_!@#$%^&.,? ).
       </ion-label>
     </div>
     <ion-button

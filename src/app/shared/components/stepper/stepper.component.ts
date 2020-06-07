@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { AppStateInterface } from "../../models/storeState.interface";
 import { SELECT_STEPS } from "../../store/stepper/stepper.selector";
@@ -15,6 +15,7 @@ export interface StepperInterface {
 })
 export class StepperComponent implements OnInit {
   steppers: StepperInterface[] = [];
+  @Output() index = new EventEmitter();
 
   constructor(private store: Store<AppStateInterface>) {}
 
@@ -39,5 +40,10 @@ export class StepperComponent implements OnInit {
 
   getStep(step) {
     return this.steppers[step].value;
+  }
+
+  position(i) {
+    console.log(i);
+    this.index.emit(i);
   }
 }

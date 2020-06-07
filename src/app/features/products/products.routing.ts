@@ -4,6 +4,8 @@ import { ListProductsComponent } from "./pages/list-products/list-products.compo
 import { NgModule } from "@angular/core";
 import { NewProductPageComponent } from "./pages/new-product/new-product.page";
 import { NewProductPageModule } from "./pages/new-product/new-product.module";
+import { ProductReviewListPageModule } from "./pages/product-review-list/product-review-list.module";
+import { ProductReviewListPageComponent } from "./pages/product-review-list/product-review-list.page";
 
 const routes: Routes = [
   {
@@ -14,6 +16,10 @@ const routes: Routes = [
     path: "new-product",
     component: NewProductPageComponent,
   },
+  {
+    path: ":id",
+    component: ProductReviewListPageComponent,
+  },
 ];
 
 @NgModule({
@@ -21,6 +27,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ListProductsModule,
     NewProductPageModule,
+    ProductReviewListPageModule,
   ],
   exports: [RouterModule],
 })

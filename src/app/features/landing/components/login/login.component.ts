@@ -1,17 +1,17 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Store } from "@ngrx/store";
-
+import {
+  ERROR_EMAIL_NOT_FOUND,
+  ERROR_PASSWORD_INVALID,
+  PASSWORD_REGEX,
+} from "src/app/shared/const";
 import { AppStateInterface } from "src/app/shared/models/storeState.interface";
 import { StoreValidator } from "src/app/shared/validators/store.validator";
 import {
   SELECT_IS_LOADING,
   SELECT_LOGIN_ERROR,
 } from "../../store/login/login.selector";
-import {
-  ERROR_EMAIL_NOT_FOUND,
-  ERROR_PASSWORD_INVALID,
-} from "src/app/shared/const";
 
 @Component({
   selector: "app-login",
@@ -19,6 +19,8 @@ import {
   styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent implements OnInit {
+  PASSWORD_REGEX = PASSWORD_REGEX;
+
   form: FormGroup;
 
   loading: boolean;
@@ -33,7 +35,10 @@ export class LoginComponent implements OnInit {
     this.form = fb.group(
       {
         email: ["", [Validators.required, Validators.email]],
-        password: ["", [Validators.required]],
+        password: [
+          "",
+          [Validators.required, Validators.pattern(PASSWORD_REGEX)],
+        ],
       },
       {
         asyncValidators: [

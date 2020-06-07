@@ -1,6 +1,5 @@
-import { ValidationErrors, AbstractControl } from "@angular/forms";
+import { AbstractControl, ValidationErrors } from "@angular/forms";
 import { Observable } from "rxjs";
-import { error } from "protractor";
 import { map, take } from "rxjs/operators";
 
 export class StoreValidator {

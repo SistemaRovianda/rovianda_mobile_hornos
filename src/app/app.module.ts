@@ -19,6 +19,7 @@ import { EffectsModule } from "@ngrx/effects";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { HttpClientModule } from "@angular/common/http";
 import { effects } from "./shared/store/effects/index.effects";
+import { MessageDialogModule } from "./features/products/dialogs/message-dialog/message-dialog.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,6 +42,7 @@ import { effects } from "./shared/store/effects/index.effects";
       maxAge: 20,
     }),
     HttpClientModule,
+    MessageDialogModule,
   ],
   providers: [
     AuthGuard,

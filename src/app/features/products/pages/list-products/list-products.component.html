@@ -6,13 +6,13 @@
 
 <ion-content>
   <div class="container">
-    <ion-grid class="grid-container--main">
-      <ion-row>
+    <ion-grid>
+      <ion-row size="12">
         <ion-col size="12">
           <h1 class="title-menu">Productos</h1>
         </ion-col>
       </ion-row>
-      <ion-col size="12" *ngIf="!products$ | async" class="products-container">
+      <ion-col *ngIf="products$ | async">
         <ion-row size="12">
           <ion-col class="text-dark" size="1"></ion-col>
           <ion-col class="text-dark" size="3">Pcc</ion-col>
@@ -23,15 +23,15 @@
 
         <ion-row>
           <ion-card
-            class="item ion-text-center"
-            *ngFor="let product of products$ | async"
+            class="item ion-text-center pointer"
+            *ngFor="let product of products$ | async; let i = index"
           >
-            <ion-row>
+            <ion-row (click)="detailProduct(product.ovenProductId)">
               <ion-col class="text-dark" size="1">
                 <ion-icon
                   lot="start"
-                  class="label-button"
-                  src="/assets/icons/clipboard-outline.svg"
+                  class="label-button icon-white"
+                  src="/assets/icons/clipboard.svg"
                 ></ion-icon
               ></ion-col>
               <ion-col size="3">{{ product.pcc }}</ion-col>
@@ -42,7 +42,7 @@
           </ion-card>
         </ion-row>
       </ion-col>
-      <ion-col *ngIf="products$ | async" class="text-dark"
+      <ion-col *ngIf="!(products$ | async)" class="text-dark"
         >No existen productos</ion-col
       >
     </ion-grid>

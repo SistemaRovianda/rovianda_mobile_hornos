@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { Observable } from "rxjs";
+import { Observable, BehaviorSubject } from "rxjs";
 import { AppStateInterface } from "src/app/shared/models/storeState.interface";
 import * as fromStepperActions from "../../../../shared/store/stepper/stepper.actions";
 import * as fromStepperSelect from "../../../../shared/store/stepper/stepper.selector";
@@ -37,6 +37,8 @@ export class NewProductPageComponent implements OnInit {
 
   revisionData;
 
+  index$: BehaviorSubject<number> = new BehaviorSubject(0);
+
   constructor(private store: Store<AppStateInterface>) {}
 
   ngOnInit() {
@@ -50,6 +52,7 @@ export class NewProductPageComponent implements OnInit {
   onSubmit(payload) {
     this.generalData = payload;
     console.log(payload);
+    this.index$.next(1);
 
     setTimeout(() => {
       this.revisionDataForm.form.valueChanges.subscribe(() => {
@@ -80,5 +83,11 @@ export class NewProductPageComponent implements OnInit {
     };
 
     this.store.dispatch(fromActionsProduct.newProduct({ product: product }));
+  }
+
+  position(i: number) {
+    console.log(i);
+
+    this.index$.next(i);
   }
 }

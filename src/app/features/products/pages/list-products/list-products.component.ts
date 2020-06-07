@@ -5,6 +5,7 @@ import { AppStateInterface } from "src/app/shared/models/storeState.interface";
 import { Store } from "@ngrx/store";
 import * as fromProductsActions from "../../store/list-products/list-products.actions";
 import * as fromProductSelector from "../../store/list-products/list-products.selector";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-list-products",
@@ -16,9 +17,16 @@ export class ListProductsComponent implements OnInit {
     fromProductSelector.fetchAllProducts
   );
 
-  constructor(private store: Store<AppStateInterface>) {}
+  constructor(
+    private store: Store<AppStateInterface>,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.store.dispatch(fromProductsActions.fetchAllProducts());
+  }
+
+  detailProduct(index) {
+    this.router.navigateByUrl(`/product/${index}`);
   }
 }
