@@ -9,3 +9,5 @@ export const fetchDetailRevision = createSelector(
   fetchDetail,
   (detail) => detail.revisions
 );
+
+export const loadingDetail = createSelector(STATE, (state) => state.loading);

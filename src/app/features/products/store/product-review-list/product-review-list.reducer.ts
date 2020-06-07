@@ -17,7 +17,7 @@ export const DetailReviewListReducer = createReducer<DetailReviewList>(
 
   on(fromActions.fetchAllDetailSuccess, (state, { detail }) => ({
     ...state,
-    deatil: detail,
+    detail,
     loading: false,
   })),
 

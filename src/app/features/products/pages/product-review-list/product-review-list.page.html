@@ -24,7 +24,7 @@
         <ion-row>
           <ion-card
             class="item pointer"
-            *ngFor="let product of product; let i = index"
+            *ngFor="let product of products$ | async; let i = index"
           >
             <ion-row>
               <ion-col

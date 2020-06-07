@@ -13,9 +13,7 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./product-review-list.page.scss"],
 })
 export class ProductReviewListPageComponent implements OnInit {
-  products$: Observable<Revision[]> = this.store.select(
-    fromDetailSelector.fetchDetailRevision
-  );
+  products$: Observable<Revision[]>;
 
   product = [
     {
@@ -26,13 +24,22 @@ export class ProductReviewListPageComponent implements OnInit {
       ovenTemp: "string",
     },
   ];
+
   constructor(
     private store: Store<AppStateInterface>,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    this.store.dispatch(fromDetailActions.fetchAllDetail({ id: this.id }));
+  }
 
   ngOnInit() {
-    this.store.dispatch(fromDetailActions.fetchAllDetail({ id: this.id }));
+    this.store.select(fromDetailSelector.loadingDetail).subscribe((loading) => {
+      if (loading == false) {
+        this.products$ = this.store.select(
+          fromDetailSelector.fetchDetailRevision
+        );
+      }
+    });
   }
 
   get id(): number {
