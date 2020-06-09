@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { of } from "rxjs";
-import { catchError, exhaustMap, map, tap } from "rxjs/operators";
-
-import * as fromActions from "./product-review-list.actions";
+import { catchError, exhaustMap, map } from "rxjs/operators";
 import { ProductService } from "src/app/shared/services/product.service";
+import * as fromActions from "./product-review-list.actions";
+
 @Injectable({
   providedIn: "root",
 })

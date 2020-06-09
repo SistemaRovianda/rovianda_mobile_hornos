@@ -41,7 +41,7 @@
         *ngIf="!(next$ |async)"
         size="12"
       >
-        <ion-button color="secondary" size="large">
+        <ion-button color="secondary" size="medium">
           <ion-grid>
             <ion-col>Cancelar</ion-col>
           </ion-grid>
@@ -50,7 +50,7 @@
           color="primary"
           (click)="validateForm()"
           [disabled]="disabledButton"
-          size="large"
+          size="medium"
         >
           <ion-grid>
             <ion-col>Siguiente</ion-col>
@@ -60,7 +60,7 @@
       <ion-row class="ion-justify-content-around" *ngIf="next$ |async">
         <ion-button
           color="secondary"
-          size="large"
+          size="medium"
           (click)="addProduct()"
           [disabled]="disabledSaveButton"
         >
@@ -69,7 +69,7 @@
             <ion-spinner *ngIf="loading$|async" name="crescent"></ion-spinner>
           </ion-grid>
         </ion-button>
-        <ion-button color="primary" size="large">
+        <ion-button color="primary" size="medium">
           <ion-grid>
             <ion-col>Usuarios</ion-col>
           </ion-grid>

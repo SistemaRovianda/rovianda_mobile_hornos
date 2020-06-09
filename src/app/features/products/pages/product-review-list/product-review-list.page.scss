@@ -2,6 +2,11 @@ $color-text-primary: #575552;
 
 .container {
   padding: 10px;
+
+  &-products {
+    height: 70vh;
+    overflow: auto;
+  }
 }
 
 .title-menu,
@@ -12,14 +17,15 @@ $color-text-primary: #575552;
 
 .title-menu {
   font-weight: bold;
+  font-size: 1em;
 }
 
 .item {
   width: 100%;
-  height: 10vh;
+  height: 9vh;
   background-color: $color-text-primary;
   color: #ffffff;
-  font-size: 1.25em;
+  font-size: 1em;
 }
 
 .products-container {
@@ -33,4 +39,10 @@ $color-text-primary: #575552;
 
 .icon-white {
   fill: #ffffff;
+}
+
+.modal-size {
+  border-radius: 5px;
+  --width: 80%;
+  --height: auto;
 }

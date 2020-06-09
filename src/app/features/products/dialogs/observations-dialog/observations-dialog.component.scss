@@ -1,0 +1,29 @@
+$color-text-primary: #b2b2b2;
+$color-text-secondary: #575552;
+
+.title-menu,
+.ion-label {
+  color: $color-text-secondary;
+  padding-left: 15px;
+}
+
+.title-menu {
+  font-size: 1.25em;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.ion-label {
+  margin-top: 0;
+  margin-bottom: 0px;
+  font-size: 1.1em;
+}
+
+.observations {
+  width: 95%;
+  height: 150px;
+  overflow: auto;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: $color-text-primary;
+}

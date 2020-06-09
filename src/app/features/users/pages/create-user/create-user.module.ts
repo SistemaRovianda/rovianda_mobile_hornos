@@ -1,26 +1,24 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { ProductReviewListPageComponent } from "./product-review-list.page";
 import { IonicModule } from "@ionic/angular";
 import { TitleHeaderModule } from "src/app/shared/components/header/header.module";
 import { RouterModule } from "@angular/router";
-import { StepperModule } from "src/app/shared/components/stepper/stepper.module";
-import { ObservationsDialogModule } from "../../dialogs/observations-dialog/observations-dialog.module";
+import { CreateUserComponent } from "./create-user.component";
+import { CreateUserFormModule } from "../../components/create-user-form/create-user-form.module";
 
 const COMMON_IMPORTS = [
   CommonModule,
   IonicModule,
   TitleHeaderModule,
   RouterModule,
-  StepperModule,
-  ObservationsDialogModule,
+  CreateUserFormModule,
 ];
 
-const COMMON_DECLARATIONS = [ProductReviewListPageComponent];
+const COMMON_DECLARATIONS = [CreateUserComponent];
 
 @NgModule({
   imports: COMMON_IMPORTS,
   declarations: COMMON_DECLARATIONS,
   exports: COMMON_DECLARATIONS,
 })
-export class ProductReviewListPageModule {}
+export class CreateUserModule {}

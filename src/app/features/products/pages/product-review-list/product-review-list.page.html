@@ -6,7 +6,7 @@
 
 <ion-content>
   <div class="container">
-    <ion-grid>
+    <ion-grid class="container-products">
       <ion-row size="12">
         <ion-col size="12">
           <h1 class="title-menu">Revisión del producto</h1>
@@ -23,7 +23,7 @@
 
         <ion-row>
           <ion-card
-            class="item pointer"
+            class="item pointer ion-justify-content-center ion-align-self-center"
             *ngFor="let product of products$ | async; let i = index"
           >
             <ion-row>
@@ -47,8 +47,8 @@
                   expand="block"
                   color="primary"
                   style="text-transform: none;"
-                  size="large"
-                  href="/product/new-product"
+                  size="medium"
+                  (click)="observations(product)"
                 >
                   Observaciones
                 </ion-button>
@@ -64,12 +64,12 @@
     <div class="ion-justify-content-center">
       <ion-col>
         <ion-row class="ion-justify-content-around btn">
-          <ion-button color="secondary" size="large">
+          <ion-button color="secondary" size="medium">
             <ion-grid>
               <ion-col>Terminar</ion-col>
             </ion-grid>
           </ion-button>
-          <ion-button color="primary" size="large">
+          <ion-button color="primary" size="medium" href="/user/create-user">
             Usuarios
           </ion-button>
         </ion-row>

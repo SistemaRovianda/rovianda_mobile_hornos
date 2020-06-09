@@ -20,6 +20,12 @@ const routes: Routes = [
         (m) => m.ProductsModule
       ),
   },
+  {
+    path: "user",
+    // canActivate: [AuthGuard],
+    loadChildren: () =>
+      import("./features/users/users.module").then((m) => m.UsersModule),
+  },
 ];
 
 @NgModule({

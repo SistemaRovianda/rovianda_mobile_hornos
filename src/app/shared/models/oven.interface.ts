@@ -45,3 +45,10 @@ export interface Revision {
   humidity: string;
   observations: string;
 }
+
+export interface OvenUser {
+  nameElaborated: string;
+  jobElaborated: string;
+  nameVerify: string;
+  jobVerify: string;
+}
