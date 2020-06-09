@@ -64,7 +64,12 @@
     <div class="ion-justify-content-center">
       <ion-col>
         <ion-row class="ion-justify-content-around btn">
-          <ion-button color="secondary" size="medium">
+          <ion-button
+            [disabled]="(users$ | async) == null"
+            (click)="endup()"
+            color="secondary"
+            size="medium"
+          >
             <ion-grid>
               <ion-col>Terminar</ion-col>
             </ion-grid>

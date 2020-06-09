@@ -1,5 +1,6 @@
 import { DetailProduct, NewProduct } from "./oven.interface";
 import { SteppersInterface } from "./stepper.interface";
+import { UsersState } from "src/app/features/products/store/users/users.reducer";
 
 export interface LoginState {
   loading: boolean;
@@ -34,4 +35,5 @@ export interface AppStateInterface {
   listProducts: any;
   newProduct: newProductState;
   detailReviewList: DetailReviewList;
+  users: UsersState;
 }

@@ -6,6 +6,7 @@ import { NewProductReducer } from "src/app/features/products/store/new-product/n
 import { AppStateInterface } from "../../models/storeState.interface";
 import { StepperInitialReducer } from "../stepper/stepper.reducer";
 import { DetailReviewListReducer } from "src/app/features/products/store/product-review-list/product-review-list.reducer";
+import { usersReducer } from "src/app/features/products/store/users/users.reducer";
 
 export const reducers: ActionReducerMap<AppStateInterface> = {
   login: loginReducer,
@@ -14,6 +15,7 @@ export const reducers: ActionReducerMap<AppStateInterface> = {
   listProducts: ListProductsReducer,
   newProduct: NewProductReducer,
   detailReviewList: DetailReviewListReducer,
+  users: usersReducer,
 };
 
 export const metaReducers: MetaReducer<AppStateInterface>[] = [];
