@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>new-revision</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-align-items-center">
+      <ion-col>
+        <revision-data-form #form (onSubmit)="onRevisionSubmit($event)">
+        </revision-data-form>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="4" class="ion-align-self-center col-4">
+        <div>
+          <ion-button
+            (click)="navToHistory()"
+            style="--background: #575552; width: 100%;"
+          >
+            Ver historial
+          </ion-button>
+        </div>
+      </ion-col>
+      <ion-col size="8" class="col-8">
+        <ion-button [disabled]="form.form.invalid" (click)="addRevision()">
+          Guardar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

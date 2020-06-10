@@ -72,16 +72,4 @@ export class ProductReviewListPageComponent implements OnInit {
   endup() {
     this.router.navigate(["/product/list"]);
   }
-
-  async openModalEnd(title: string, message: string) {
-    const modal = await this.modalController.create({
-      component: MessageDialogComponent,
-      cssClass: "modal-size",
-      componentProps: {
-        title: title,
-        message: message,
-      },
-    });
-    return await modal.present();
-  }
 }

@@ -7,6 +7,8 @@ import { NewProductPageModule } from "./pages/new-product/new-product.module";
 import { ProductReviewListPageModule } from "./pages/product-review-list/product-review-list.module";
 import { ProductReviewListPageComponent } from "./pages/product-review-list/product-review-list.page";
 import { UsersResolve } from "src/app/shared/resolvers/users.resolver";
+import { NewRevisionPage } from "./pages/new-revision/new-revision.page";
+import { NewRevisionPageModule } from "./pages/new-revision/new-revision.module";
 
 const routes: Routes = [
   {
@@ -19,6 +21,10 @@ const routes: Routes = [
   },
   {
     path: ":id",
+    component: NewRevisionPage,
+  },
+  {
+    path: ":id/revisions",
     resolve: {
       users: UsersResolve,
     },
@@ -31,6 +37,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ListProductsModule,
     NewProductPageModule,
+    NewRevisionPageModule,
     ProductReviewListPageModule,
   ],
   providers: [UsersResolve],

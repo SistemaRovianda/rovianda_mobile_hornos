@@ -1,0 +1,15 @@
+@import "../../../../../theme/mixins.scss";
+
+ion-content {
+  ion-grid {
+    ion-row {
+      .col-4 {
+        @include flexible(row, center, center);
+      }
+
+      .col-8 {
+        @include flexible(row, flex-start, center);
+      }
+    }
+  }
+}
