@@ -1,6 +1,6 @@
 <title-header
-  [titlePath]="'Salir'"
-  [path]="'/'"
+  [titlePath]="'Regresar'"
+  [path]="path"
   [title]="'Hornos'"
 ></title-header>
 
@@ -14,17 +14,19 @@
       </ion-row>
       <ion-row class="page">
         <ion-col size="12">
-          <create-user-form></create-user-form>
+          <create-user-form
+            (onSubmit)="onSubmitUsers($event)"
+          ></create-user-form>
         </ion-col>
       </ion-row>
 
       <ion-row class="ion-justify-content-around">
-        <ion-button color="primary" size="short">
+        <ion-button color="primary" size="short" (click)="onBack()">
           <ion-grid>
             <ion-col>Regresar</ion-col>
           </ion-grid>
         </ion-button>
-        <ion-button color="secondary" size="short">
+        <ion-button color="secondary" size="short" (click)="addUsers()">
           <ion-grid>
             <ion-col *ngIf="!(loading$ | async)" size="12">Guardar</ion-col>
             <ion-spinner *ngIf="loading$ | async" name="crescent"></ion-spinner>

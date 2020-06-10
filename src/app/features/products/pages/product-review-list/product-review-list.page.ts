@@ -72,4 +72,10 @@ export class ProductReviewListPageComponent implements OnInit {
   endup() {
     this.router.navigate(["/product/list"]);
   }
+
+  addUsers() {
+    this.router.navigate([
+      `/user/${this.route.snapshot.paramMap.get("id")}/create-user`,
+    ]);
+  }
 }
