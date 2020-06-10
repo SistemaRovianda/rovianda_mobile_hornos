@@ -6,6 +6,7 @@ import { RouterModule } from "@angular/router";
 import { CreateUserComponent } from "./create-user.component";
 import { CreateUserFormModule } from "../../components/create-user-form/create-user-form.module";
 import { ConfirmAddUserModule } from "../../dialogs/confirm-add-user/confirm-add-user.module";
+import { ConfirmReportModule } from "../../dialogs/confirm-report/confirm-report.module";
 
 const COMMON_IMPORTS = [
   CommonModule,
@@ -14,6 +15,7 @@ const COMMON_IMPORTS = [
   RouterModule,
   CreateUserFormModule,
   ConfirmAddUserModule,
+  ConfirmReportModule,
 ];
 
 const COMMON_DECLARATIONS = [CreateUserComponent];

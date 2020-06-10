@@ -5,6 +5,7 @@ import { Store } from "@ngrx/store";
 import { ModalController } from "@ionic/angular";
 import { ConfirmAddUserComponent } from "../../dialogs/confirm-add-user/confirm-add-user.component";
 import { CreateUserFormComponent } from "../../components/create-user-form/create-user-form.component";
+import { ConfirmReportComponent } from "../../dialogs/confirm-report/confirm-report.component";
 
 @Component({
   selector: "app-create-user",
@@ -53,6 +54,22 @@ export class CreateUserComponent implements OnInit {
       componentProps: {
         id: this.route.snapshot.paramMap.get("id"),
         users: users,
+      },
+    });
+
+    return await modal.present();
+  }
+
+  generateReportPDF() {
+    this.confirmReport();
+  }
+
+  async confirmReport() {
+    const modal = await this._modalCtrl.create({
+      component: ConfirmReportComponent,
+      cssClass: "modal-size",
+      componentProps: {
+        id: this.route.snapshot.paramMap.get("id"),
       },
     });
 

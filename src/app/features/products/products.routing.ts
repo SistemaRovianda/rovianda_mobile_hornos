@@ -9,6 +9,8 @@ import { ProductReviewListPageComponent } from "./pages/product-review-list/prod
 import { UsersResolve } from "src/app/shared/resolvers/users.resolver";
 import { NewRevisionPage } from "./pages/new-revision/new-revision.page";
 import { NewRevisionPageModule } from "./pages/new-revision/new-revision.module";
+import { ReportPage } from "./pages/report/report.page";
+import { ReportPageModule } from "./pages/report/report.module";
 
 const routes: Routes = [
   {
@@ -30,6 +32,10 @@ const routes: Routes = [
     },
     component: ProductReviewListPageComponent,
   },
+  {
+    path: ":id/report",
+    component: ReportPage,
+  },
 ];
 
 @NgModule({
@@ -38,6 +44,7 @@ const routes: Routes = [
     ListProductsModule,
     NewProductPageModule,
     NewRevisionPageModule,
+    ReportPageModule,
     ProductReviewListPageModule,
   ],
   providers: [UsersResolve],
