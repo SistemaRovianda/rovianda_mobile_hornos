@@ -1,6 +1,6 @@
 <title-header
-  [titlePath]="'Salir'"
-  [path]="'/'"
+  [titlePath]="'Regresar'"
+  [path]="'/product/list'"
   [title]="'Hornos'"
 ></title-header>
 
@@ -41,7 +41,7 @@
         *ngIf="!(next$ |async)"
         size="12"
       >
-        <ion-button color="secondary" size="medium">
+        <ion-button color="secondary" size="medium" (click)="cancel()">
           <ion-grid>
             <ion-col>Cancelar</ion-col>
           </ion-grid>

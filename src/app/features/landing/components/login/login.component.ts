@@ -35,10 +35,7 @@ export class LoginComponent implements OnInit {
     this.form = fb.group(
       {
         email: ["", [Validators.required, Validators.email]],
-        password: [
-          "",
-          [Validators.required, Validators.pattern(PASSWORD_REGEX)],
-        ],
+        password: ["", [Validators.required]],
       },
       {
         asyncValidators: [

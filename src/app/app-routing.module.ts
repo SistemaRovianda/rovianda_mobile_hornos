@@ -14,7 +14,7 @@ const routes: Routes = [
   },
   {
     path: "product",
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("./features/products/products.module").then(
         (m) => m.ProductsModule
@@ -22,7 +22,7 @@ const routes: Routes = [
   },
   {
     path: "user",
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("./features/users/users.module").then((m) => m.UsersModule),
   },

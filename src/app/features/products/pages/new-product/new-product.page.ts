@@ -8,6 +8,7 @@ import { GeneralDataFormComponent } from "../../components/general-data-form/gen
 import { RevisionDataFormComponent } from "../../components/revision-data-form/revision-data-form.component";
 import * as fromActionsProduct from "../../store/new-product/new-product.actions";
 import * as fromSelectorProduct from "../../store/new-product/new-product.selector";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-new-product",
@@ -39,7 +40,10 @@ export class NewProductPageComponent implements OnInit {
 
   index$: BehaviorSubject<number> = new BehaviorSubject(0);
 
-  constructor(private store: Store<AppStateInterface>) {}
+  constructor(
+    private store: Store<AppStateInterface>,
+    private _router: Router
+  ) {}
 
   ngOnInit() {
     setTimeout(() => {
@@ -89,5 +93,9 @@ export class NewProductPageComponent implements OnInit {
     console.log(i);
 
     this.index$.next(i);
+  }
+
+  cancel() {
+    this._router.navigate(["product/list"]);
   }
 }
