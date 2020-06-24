@@ -6,25 +6,41 @@
 
 <ion-content>
   <ion-grid>
-    <ion-row class="ion-align-items-center">
+    <ion-row
+      class="row row-1 ion-justify-content-center ion-align-items-center"
+    >
       <ion-col>
         <revision-data-form #form (onSubmit)="onRevisionSubmit($event)">
         </revision-data-form>
       </ion-col>
     </ion-row>
-    <ion-row class="ion-align-items-center">
-      <ion-col size="4" class="ion-align-self-center col-4">
-        <div>
-          <ion-button
-            (click)="navToHistory()"
-            style="--background: #575552; width: 100%;"
-          >
-            Ver historial
-          </ion-button>
-        </div>
+    <ion-row
+      class="row row-2 ion-justify-content-center ion-align-items-center"
+    >
+      <ion-col
+        size="4"
+        class="ion-justify-content-center ion-align-items-center col-4"
+      >
+        <ion-button
+          expand="block"
+          size="large"
+          color="secondary"
+          (click)="navToHistory()"
+        >
+          Ver historial
+        </ion-button>
       </ion-col>
-      <ion-col size="8" class="col-8">
-        <ion-button [disabled]="form.form.invalid" (click)="addRevision()">
+      <ion-col
+        size="8"
+        class="ion-justify-content-center ion-align-items-center col-8"
+      >
+        <ion-button
+          expand="block"
+          size="large"
+          color="primary"
+          [disabled]="form.form.invalid"
+          (click)="addRevision()"
+        >
           Guardar
         </ion-button>
       </ion-col>
