@@ -1,20 +1,21 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <ion-row> <h1 class="title-menu">Datos generales</h1></ion-row>
   <ion-grid fixed>
-    <ion-row class="ion-justify-content-around">
-      <ion-col size="5">
-        <ion-row>
-          <ion-item class="form-input ion-no-padding">
-            <ion-label class="ion-label" position="floating"
-              >Tiempo estimado*</ion-label
-            >
-            <ion-input
-              placeholder="Ingresa tiempo"
-              formControlName="estimatedTime"
-            >
-            </ion-input>
-          </ion-item>
-        </ion-row>
+    <ion-row
+      class="row row-1 ion-justify-content-center ion-align-items-center"
+    >
+      <ion-col size="6">
+        <ion-item class="form-input ion-no-padding">
+          <ion-label class="ion-label" position="floating"
+            >Tiempo estimado*</ion-label
+          >
+          <ion-input
+            placeholder="Ingresa tiempo"
+            formControlName="estimatedTime"
+          >
+          </ion-input>
+        </ion-item>
+
         <div class="error">
           <ion-label
             *ngIf="
@@ -30,14 +31,25 @@
           </ion-label>
         </div>
       </ion-col>
-      <ion-col size="5">
-        <ion-row>
-          <ion-item class="form-input ion-no-padding">
+
+      <ion-col size="6">
+        <ion-item>
+          <ion-label position="stacked">Producto*</ion-label>
+          <ion-select
+            formControlName="productId"
+            interface="action-sheet"
+            (ionChange)="onChange($event)"
+          >
+            <ion-select-option [value]="1">Producto 1</ion-select-option>
+            <ion-select-option [value]="2">Producto 2</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <!-- <ion-item class="form-input ion-no-padding">
             <ion-label class="ion-label" position="floating">Lote*</ion-label>
             <ion-input placeholder="Ingresa lote" formControlName="newLote">
             </ion-input>
-          </ion-item>
-        </ion-row>
+          </ion-item> -->
+
         <div class="error">
           <ion-label
             *ngIf="
@@ -54,15 +66,16 @@
       </ion-col>
     </ion-row>
 
-    <ion-row class="ion-justify-content-around">
-      <ion-col size="5">
-        <ion-row>
-          <ion-item class="form-input ion-no-padding">
-            <ion-label class="ion-label" position="floating">PCC*</ion-label>
-            <ion-input placeholder="Ingresa PCC" formControlName="pcc">
-            </ion-input>
-          </ion-item>
-        </ion-row>
+    <ion-row
+      class="row row-2 ion-justify-content-center ion-align-items-center"
+    >
+      <ion-col size="6">
+        <ion-item class="form-input ion-no-padding">
+          <ion-label class="ion-label" position="floating">PCC*</ion-label>
+          <ion-input placeholder="Ingresa PCC" formControlName="pcc">
+          </ion-input>
+        </ion-item>
+
         <div class="error">
           <ion-label
             *ngIf="
@@ -78,16 +91,26 @@
         </div>
       </ion-col>
 
-      <ion-col size="5">
-        <ion-row>
-          <ion-item class="form-input ion-no-padding">
+      <ion-col size="6">
+        <ion-item>
+          <ion-label position="stacked">Lote*</ion-label>
+          <ion-select
+            formControlName="newLote"
+            interface="action-sheet"
+            placeholder="Selecciones Lote"
+          >
+            <ion-select-option [value]="1">Lote 1</ion-select-option>
+            <ion-select-option [value]="2">Hawaii</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <!-- <ion-item class="form-input ion-no-padding">
             <ion-label class="ion-label" position="floating"
               >Producto*</ion-label
             >
             <ion-input placeholder="Ingresa PCC" formControlName="productId">
             </ion-input>
-          </ion-item>
-        </ion-row>
+          </ion-item> -->
+
         <div class="error">
           <ion-label
             *ngIf="
@@ -103,8 +126,8 @@
         </div>
       </ion-col>
     </ion-row>
-    <ion-row style="padding-left: 15px;">
-      <ion-col size="5">
+    <ion-row class="row row-3 ion-align-items-center">
+      <ion-col size="6">
         <ion-row>
           <ion-item class="form-input ion-no-padding">
             <ion-label class="ion-label" position="floating">Fecha*</ion-label>

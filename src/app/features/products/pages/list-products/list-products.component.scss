@@ -1,54 +1,137 @@
-$color-text-primary: #575552;
-$color-text-error: #830f0f;
+@import "../../../../../theme/mixins.scss";
 
-.title-menu,
-.text-dark {
-  color: $color-text-primary;
-  width: 100%;
-}
+// $color-text-primary: #575552;
+// $color-text-error: #830f0f;
 
-.title-menu {
-  font-weight: bold;
-  font-size: 1em;
-}
+// .title-menu,
+// .text-dark {
+//   color: $color-text-primary;
+//   width: 100%;
+//   font-size: 2rem;
+// }
 
-.grid-container--main {
-  height: 70vh;
-  :nth-child(2) {
-    align-self: center;
-    color: $color-text-error;
-    font-size: 18px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    align-content: center;
-    align-content: center;
-    height: 150px;
-  }
-}
+// .title-menu {
+//   font-weight: bold;
+//   font-size: 1em;
+// }
+
+// .grid-container--main {
+//   height: 70vh;
+//   :nth-child(2) {
+//     align-self: center;
+//     color: $color-text-error;
+//     font-size: 18px;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     text-align: center;
+//     align-content: center;
+//     align-content: center;
+//     height: 150px;
+//   }
+// }
+
+// .container {
+//   padding: 10px;
+
+//   &-grid {
+//     .row {
+//       &-1 {
+//         ion-col {
+//           h1 {
+//             font-size: 2rem;
+//           }
+//         }
+//       }
+
+//       &-2 {
+//         border: 1px solid red;
+//         height: 70%;
+//       }
+//     }
+
+//     ion-col {
+//       ion-row {
+//         ion-col {
+//           font-size: 1.5rem;
+//         }
+//       }
+//     }
+//   }
+// }
+
+// .item {
+//   width: 100%;
+//   height: 25px;
+//   background-color: $color-text-primary;
+//   color: #ffffff;
+//   margin: 10px 0;
+
+//   ion-row {
+//     ion-col {
+//       font-size: 1.5rem;
+//     }
+//   }
+// }
+
+// .products-container {
+//   height: 80vh;
+//   overflow: auto;
+// }
+
+// .pointer {
+//   cursor: pointer;
+// }
+
+// .icon-white {
+//   font-size: 1.5em;
+//   color: #ffffff;
+// }
 
 .container {
-  padding: 10px;
-}
+  height: 100%;
+  &-grid {
+    height: 100%;
+    .row {
+      &-1 {
+        height: 5%;
 
-.item {
-  width: 100%;
-  background-color: $color-text-primary;
-  color: #ffffff;
-  margin: 10px 0;
-}
+        @include breakpoint-size(ms-medium) {
+          height: 10%;
+        }
+      }
 
-.products-container {
-  height: 80vh;
-  overflow: auto;
-}
+      &-2 {
+        height: 5%;
 
-.pointer {
-  cursor: pointer;
-}
+        ion-col {
+          font-size: var(--font-size-md);
 
-.icon-white {
-  font-size: 1.5em;
-  color: #ffffff;
+          @include breakpoint-size(ms-medium) {
+            text-align: center;
+          }
+        }
+      }
+
+      &-3 {
+        height: 75%;
+        overflow-y: scroll;
+
+        @include breakpoint-size(ms-medium) {
+          height: 70%;
+        }
+      }
+
+      &-4 {
+        height: 15%;
+
+        ion-col {
+          ion-button {
+            height: 70px;
+            font-size: var(--font-size-md);
+          }
+        }
+      }
+    }
+  }
 }

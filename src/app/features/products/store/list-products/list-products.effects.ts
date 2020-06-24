@@ -18,7 +18,7 @@ export class ListProductsEffects {
     this.actions$.pipe(
       ofType(fromActions.fetchAllProducts),
       exhaustMap(() =>
-        this.productsService.getProducts().pipe(
+        this.productsService.getProductsOven().pipe(
           map((products) => fromActions.fetchAllProductsSuccess({ products })),
           catchError((error) => of(fromActions.fetchAllProductsError(error)))
         )

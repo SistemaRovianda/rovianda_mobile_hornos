@@ -6,11 +6,13 @@ import { TitleHeaderModule } from "src/app/shared/components/header/header.modul
 
 import { ListProductsComponent } from "./list-products.component";
 import { StepperModule } from "src/app/shared/components/stepper/stepper.module";
+import { ProductOvenModule } from "../../components/cards/product-oven-card/product-oven-card.module";
 
 const COMMON_IMPORTS = [
   CommonModule,
   IonicModule,
   TitleHeaderModule,
+  ProductOvenModule,
   RouterModule,
   StepperModule,
 ];

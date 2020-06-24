@@ -29,18 +29,29 @@ export class GeneralDataFormComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.form
+    //   .get("productId")
+    //   .valueChanges.subscribe((res) =>
+    //     console.log("Producto seleccionado: ", res)
+    //   );
+  }
 
   onSubmit() {
     const { estimatedTime, newLote, pcc, productId } = this.form.value;
     const payload = {
       estimatedTime: estimatedTime.trim(),
-      newLote: newLote.trim(),
+      newLote: newLote,
       pcc: pcc.trim(),
-      productId: productId.trim(),
+      productId: productId,
       date: moment(new Date()).format("DD/MM/YYYY"),
     };
 
     this.submit.emit(payload);
+  }
+
+  onChange(event) {
+    this.form.get("productId").setValue(event.detail.value);
+    console.log("Producto seleccionado: ", event.detail.value);
   }
 }

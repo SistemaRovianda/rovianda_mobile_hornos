@@ -18,6 +18,10 @@ $color-secundary: #707070;
 $color-text-primary: #e2bd53;
 $color-text-secondary: #dbdbdb;
 
+* {
+  font-size: 14px;
+}
+
 .modal-size {
   border-radius: 5px;
   --width: 80%;

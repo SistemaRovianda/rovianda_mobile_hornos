@@ -74,6 +74,12 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /** font size**/
+  --font-size-sm: 1.2rem;
+  --font-size-md: 1.5rem;
+  --font-size-lg: 1.8rem;
+  --font-size-xl: 2rem;
 }
 
 @media (prefers-color-scheme: dark) {
