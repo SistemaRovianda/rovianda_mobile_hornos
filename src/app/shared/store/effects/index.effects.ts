@@ -4,6 +4,7 @@ import { NewProductEffects } from "src/app/features/products/store/new-product/n
 import { DetailReviewListEffects } from "src/app/features/products/store/product-review-list/product-review-list.effects";
 import { UsersEffects } from "src/app/features/products/store/users/users.effects";
 import { RevisionEffects } from "src/app/features/products/store/revision/revision.effects";
+import { ProductsFormulationEffects } from "../../../features/products/store/products-formulation/products-formulation.effects";
 
 export const effects = [
   LogginEffects,
@@ -12,4 +13,5 @@ export const effects = [
   DetailReviewListEffects,
   UsersEffects,
   RevisionEffects,
+  ProductsFormulationEffects,
 ];

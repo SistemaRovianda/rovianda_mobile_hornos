@@ -11,6 +11,7 @@ import { of } from "rxjs";
 import { Router } from "@angular/router";
 import { ModalController } from "@ionic/angular";
 import { MessageDialogComponent } from "../../dialogs/message-dialog/message-dialog.component";
+import { ToastService } from "src/app/shared/services/toast.service";
 
 @Injectable({
   providedIn: "root",
@@ -20,7 +21,8 @@ export class RevisionEffects {
     private _actions$: Actions,
     private _revisionService: RevisionService,
     private _router: Router,
-    private _modalCtrl: ModalController
+    private _modalCtrl: ModalController,
+    private toastService: ToastService
   ) {}
 
   registerRevisionEffect$ = createEffect(() =>
@@ -31,6 +33,7 @@ export class RevisionEffects {
           .registerRevision(action.productId, action.revision)
           .pipe(
             switchMap((_) => {
+              this.toastService.presentToastSuccess();
               this._router.navigate([`product/${action.productId}/revisions`]);
               return [registerRevisionSuccess()];
             }),

@@ -2,21 +2,34 @@
 
 ion-content {
   ion-grid {
-    border: 1px solid red;
     height: 100%;
     min-height: 1280px;
     display: flex;
     flex-direction: column;
+
+    @include breakpoint-size(ms-extra-small) {
+      min-height: 500px;
+    }
+
+    @include breakpoint-size(ms-small) {
+      height: 700px;
+    }
+
+    @include breakpoint-size(ms-medium) {
+      min-height: 500px;
+    }
 
     @include breakpoint-size(ms-extra-large) {
       min-height: 700px;
     }
 
     .row {
-      border: 1px solid blue;
-
       &-1 {
-        height: 50%;
+        height: 60%;
+
+        @include breakpoint-size(ms-medium) {
+          height: 85%;
+        }
 
         @include breakpoint-size(ms-extra-large) {
           height: 75%;
@@ -31,7 +44,6 @@ ion-content {
         height: 15%;
 
         ion-col {
-          border: 1px solid red;
           height: 100%;
           display: flex;
           flex-direction: row;
@@ -41,21 +53,32 @@ ion-content {
             height: 60px;
             font-size: var(--font-size-md);
 
+            @include breakpoint-size(ms-extra-small) {
+              width: 100%;
+              height: 35px;
+              font-size: var(--fs-text-xsm);
+            }
+
+            @include breakpoint-size(ms-small) {
+              width: 100%;
+              height: 45px;
+              font-size: var(--fs-text-sm);
+            }
+
+            @include breakpoint-size(ms-medium) {
+              width: 90%;
+              height: 30px;
+              font-size: var(--fs-text-md);
+            }
+
             @include breakpoint-size(ms-extra-large) {
               width: 90%;
               height: 40px;
-              font-size: var(--font-size-sm);
+              font-size: var(--fs-text-xl);
             }
           }
         }
       }
-      // .col-4 {
-      //   @include flexible(row, center, center);
-      // }
-
-      // .col-8 {
-      //   @include flexible(row, flex-start, center);
-      // }
     }
   }
 }

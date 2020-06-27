@@ -84,10 +84,11 @@
   --ion-color-light-tint: #f5f6f9;
 
   /** font size title**/
-  --fs-text-title-sm: 1.5rem;
-  --fs-text-title-md: 1.6rem;
-  --fs-text-title-lg: 1.7rem;
-  --fs-text-title-xl: 1.8rem;
+  --fs-text-title-xsm: 1.5rem;
+  --fs-text-title-sm: 1.8rem;
+  --fs-text-title-md: 1.5rem;
+  --fs-text-title-lg: 1.6rem;
+  --fs-text-title-xl: 1.7rem;
 
   --font-size-sm: 1.2rem;
   --font-size-md: 1.5rem;
@@ -95,10 +96,16 @@
   --font-size-xl: 2rem;
 
   /** font size n1ormal text**/
-  --fs-text-sm: 1.4rem;
-  --fs-text-md: 1.6rem;
-  --fs-text-lg: 1.7rem;
-  --fs-text-xl: 1.8rem;
+  --fs-text-xsm: 1.3rem;
+  --fs-text-sm: 1.7rem;
+  --fs-text-md: 1.3rem;
+  --fs-text-lg: 1.6rem;
+  --fs-text-xl: 1.6rem;
+
+  --fs-text-error-xsm: 1.1rem;
+  --fs-text-error-sm: 1.4rem;
+  --fs-text-error-md: 0.9rem;
+  --fs-text-error-xl: 1.2rem;
 }
 
 @media (prefers-color-scheme: dark) {

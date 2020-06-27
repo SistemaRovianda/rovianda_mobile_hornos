@@ -1,21 +1,98 @@
-$color-text-primary: #575552;
-
-.title-menu,
-.text-dark {
-  color: $color-text-primary;
-  font-weight: bold;
-}
-
-.title-menu {
-  font-size: 1em;
-  padding-left: 15px;
-  margin: 5px;
-}
+@import "../../../../../theme/mixins.scss";
 
 .container {
-  padding: 0 10px;
-}
+  height: 100%;
+  &--all {
+    @include breakpoint-size(ms-extra-small) {
+      min-height: 800px;
+    }
 
-.page {
-  height: 70vh;
+    @include breakpoint-size(ms-small) {
+      min-height: 1000px;
+    }
+
+    @include breakpoint-size(ms-medium) {
+      min-height: 500px;
+    }
+
+    @include breakpoint-size(ms-extra-large) {
+      min-height: 700px;
+    }
+  }
+
+  &__row {
+    &--forms {
+      height: 85%;
+
+      @include breakpoint-size(ms-extra-small) {
+        height: 83%;
+      }
+
+      @include breakpoint-size(ms-small) {
+        height: 78%;
+      }
+
+      @include breakpoint-size(ms-medium) {
+        height: 75%;
+      }
+
+      @include breakpoint-size(ms-extra-large) {
+        height: 77%;
+      }
+    }
+
+    &--stepper {
+      height: 5%;
+
+      @include breakpoint-size(ms-extra-small) {
+        height: 7%;
+      }
+
+      @include breakpoint-size(ms-small) {
+        height: 7%;
+      }
+
+      @include breakpoint-size(ms-medium) {
+        height: 15%;
+      }
+
+      @include breakpoint-size(ms-extra-large) {
+        height: 13%;
+      }
+    }
+
+    &--buttons {
+      height: 10%;
+
+      @include breakpoint-size(ms-small) {
+        height: 15%;
+      }
+    }
+  }
+
+  &__form {
+    height: 100%;
+  }
+
+  &__button {
+    @include breakpoint-size(ms-extra-small) {
+      height: 35px;
+      font-size: var(--fs-text-xsm);
+    }
+
+    @include breakpoint-size(ms-small) {
+      height: 45px;
+      font-size: var(--fs-text-sm);
+    }
+
+    @include breakpoint-size(ms-medium) {
+      height: 30px;
+      font-size: var(--fs-text-md);
+    }
+
+    @include breakpoint-size(ms-extra-large) {
+      height: 40px;
+      font-size: var(--fs-text-xl);
+    }
+  }
 }

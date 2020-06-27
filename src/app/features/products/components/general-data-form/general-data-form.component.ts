@@ -2,6 +2,11 @@ import { Component, EventEmitter, OnInit, Output, Input } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import * as moment from "moment";
 import { whitespaceValidator } from "src/app/shared/validators/whitespace.validator";
+import { ProductFormulation } from "src/app/shared/models/product.interface";
+import { Observable } from "rxjs";
+import { Store } from "@ngrx/store";
+import { AppStateInterface } from "src/app/shared/models/storeState.interface";
+import { productsFormulationSelect } from "../../store/products-formulation/products-formulation.selectors";
 
 @Component({
   selector: "general-data-form",
@@ -17,7 +22,14 @@ export class GeneralDataFormComponent implements OnInit {
   @Output("onSubmit") submit = new EventEmitter();
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  productsFormulation$: Observable<ProductFormulation[]>;
+
+  lotesByProductFormulation: String[];
+
+  constructor(
+    private fb: FormBuilder,
+    private store: Store<AppStateInterface>
+  ) {
     this.form = fb.group({
       estimatedTime: ["", [Validators.required, whitespaceValidator]],
       newLote: ["", [Validators.required, whitespaceValidator]],
@@ -26,32 +38,30 @@ export class GeneralDataFormComponent implements OnInit {
       date: [
         { value: moment(new Date()).format("DD/MM/YYYY"), disabled: true },
       ],
+      oven: ["", [Validators.required, whitespaceValidator]],
     });
   }
 
   ngOnInit() {
-    // this.form
-    //   .get("productId")
-    //   .valueChanges.subscribe((res) =>
-    //     console.log("Producto seleccionado: ", res)
-    //   );
+    this.productsFormulation$ = this.store.select(productsFormulationSelect);
   }
 
   onSubmit() {
-    const { estimatedTime, newLote, pcc, productId } = this.form.value;
+    const { estimatedTime, newLote, pcc, productId, oven } = this.form.value;
     const payload = {
       estimatedTime: estimatedTime.trim(),
       newLote: newLote,
       pcc: pcc.trim(),
-      productId: productId,
+      productId: productId.productRoviandaId,
       date: moment(new Date()).format("DD/MM/YYYY"),
+      oven: parseInt(oven),
     };
 
     this.submit.emit(payload);
   }
 
   onChange(event) {
-    this.form.get("productId").setValue(event.detail.value);
     console.log("Producto seleccionado: ", event.detail.value);
+    this.lotesByProductFormulation = event.detail.value.lots;
   }
 }

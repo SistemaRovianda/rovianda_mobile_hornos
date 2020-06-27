@@ -3,6 +3,9 @@ import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { AppStateInterface } from "src/app/shared/models/storeState.interface";
 import * as fromProductsActions from "../../store/list-products/list-products.actions";
+import { Observable } from "rxjs";
+import { Products } from "src/app/shared/models/oven.interface";
+import { fetchAllProducts } from "../../store/list-products/list-products.selector";
 
 @Component({
   selector: "app-list-products",
@@ -10,11 +13,9 @@ import * as fromProductsActions from "../../store/list-products/list-products.ac
   styleUrls: ["./list-products.component.scss"],
 })
 export class ListProductsComponent implements OnInit {
-  // products$: Observable<Products[]> = this.store.select(
-  //   fromProductSelector.fetchAllProducts
-  // );
+  products$: Observable<Products[]> = this.store.select(fetchAllProducts);
 
-  products$: any = new Array(35);
+  // products$: any = new Array(35);
 
   constructor(private store: Store<AppStateInterface>) {}
 

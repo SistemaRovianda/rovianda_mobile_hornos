@@ -1,23 +1,57 @@
 $color-text-primary: #575552;
+@import "../../../../../theme/mixins.scss";
 
 .container {
   padding: 10px;
+  height: 100%;
+
+  @include breakpoint-size(ms-medium) {
+    min-height: 1024px;
+  }
+
+  @include breakpoint-size(ms-extra-large) {
+    min-height: 700px;
+  }
 
   &-products {
     height: 70vh;
     overflow: auto;
+
+    @include breakpoint-size(ms-medium) {
+      min-height: 700px;
+    }
+
+    @include breakpoint-size(ms-extra-large) {
+      min-height: 500px;
+    }
   }
 }
 
-.title-menu,
 .text-dark {
   color: $color-text-primary;
   width: 100%;
+  font-size: var(--fs-text-md);
+
+  @include breakpoint-size(ms-medium) {
+    font-size: var(--fs-text-md);
+  }
+
+  @include breakpoint-size(ms-extra-large) {
+    font-size: var(--fs-text-lg);
+  }
 }
 
 .title-menu {
   font-weight: bold;
-  font-size: 1em;
+  font-size: var(--fs-text-title-xl);
+
+  @include breakpoint-size(ms-medium) {
+    font-size: var(--fs-text-title-md);
+  }
+
+  @include breakpoint-size(ms-extra-large) {
+    font-size: var(--fs-text-title-xl);
+  }
 }
 
 .item {
@@ -25,7 +59,7 @@ $color-text-primary: #575552;
   height: 9vh;
   background-color: $color-text-primary;
   color: #ffffff;
-  font-size: 1em;
+  font-size: var(--fs-text-lg);
 }
 
 .products-container {
@@ -45,4 +79,13 @@ $color-text-primary: #575552;
   border-radius: 5px;
   --width: 80%;
   --height: auto;
+}
+
+.btn {
+  width: 40%;
+  height: 45px;
+}
+
+.row-list {
+  height: 75%;
 }

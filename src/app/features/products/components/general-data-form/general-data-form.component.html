@@ -1,23 +1,29 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <ion-row> <h1 class="title-menu">Datos generales</h1></ion-row>
-  <ion-grid fixed>
+<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <ion-grid class="form__grid" fixed>
+    <ion-row class="form form__row form__row--first">
+      <h1 class="form form__title">Datos generales</h1>
+    </ion-row>
     <ion-row
-      class="row row-1 ion-justify-content-center ion-align-items-center"
+      class="form form__row form__row--second ion-justify-content-center ion-align-items-center"
     >
-      <ion-col size="6">
-        <ion-item class="form-input ion-no-padding">
-          <ion-label class="ion-label" position="floating"
+      <ion-col class="form form__column" size="6">
+        <ion-item class="form form__item ion-no-padding">
+          <ion-label class="form form__label" position="stacked"
             >Tiempo estimado*</ion-label
           >
           <ion-input
+            class="form form__input"
             placeholder="Ingresa tiempo"
             formControlName="estimatedTime"
           >
           </ion-input>
         </ion-item>
 
-        <div class="error">
+        <div
+          class="form form__message-container form__message-container--error"
+        >
           <ion-label
+            class="form form__label form__label--error"
             *ngIf="
               form.hasError('required', 'estimatedTime') &&
               (form.controls.estimatedTime.touched ||
@@ -26,93 +32,41 @@
           >
             Este campo es requerido.
           </ion-label>
-          <ion-label *ngIf="form.hasError('whitespace', 'estimatedTime')">
+          <ion-label
+            class="form form__label form__label--error"
+            *ngIf="form.hasError('whitespace', 'estimatedTime')"
+          >
             No has introducido caracteres.
           </ion-label>
         </div>
       </ion-col>
 
-      <ion-col size="6">
-        <ion-item>
-          <ion-label position="stacked">Producto*</ion-label>
+      <ion-col class="form form__column" size="6">
+        <ion-item class="form form__item">
+          <ion-label class="form form__label" position="stacked"
+            >Producto*</ion-label
+          >
           <ion-select
-            formControlName="productId"
+            class="form form__select"
             interface="action-sheet"
+            placeholder="Seleccione un producto"
+            formControlName="productId"
             (ionChange)="onChange($event)"
           >
-            <ion-select-option [value]="1">Producto 1</ion-select-option>
-            <ion-select-option [value]="2">Producto 2</ion-select-option>
-          </ion-select>
-        </ion-item>
-        <!-- <ion-item class="form-input ion-no-padding">
-            <ion-label class="ion-label" position="floating">Lote*</ion-label>
-            <ion-input placeholder="Ingresa lote" formControlName="newLote">
-            </ion-input>
-          </ion-item> -->
-
-        <div class="error">
-          <ion-label
-            *ngIf="
-              form.hasError('required', 'newLote') &&
-              (form.controls.newLote.touched || form.controls.newLote.dirty)
-            "
-          >
-            Este campo es requerido.
-          </ion-label>
-          <ion-label *ngIf="form.hasError('whitespace', 'newLote')">
-            No has introducido caracteres.
-          </ion-label>
-        </div>
-      </ion-col>
-    </ion-row>
-
-    <ion-row
-      class="row row-2 ion-justify-content-center ion-align-items-center"
-    >
-      <ion-col size="6">
-        <ion-item class="form-input ion-no-padding">
-          <ion-label class="ion-label" position="floating">PCC*</ion-label>
-          <ion-input placeholder="Ingresa PCC" formControlName="pcc">
-          </ion-input>
-        </ion-item>
-
-        <div class="error">
-          <ion-label
-            *ngIf="
-              form.hasError('required', 'pcc') &&
-              (form.controls.pcc.touched || form.controls.pcc.dirty)
-            "
-          >
-            Este campo es requerido.
-          </ion-label>
-          <ion-label *ngIf="form.hasError('whitespace', 'pcc')">
-            No has introducido caracteres.
-          </ion-label>
-        </div>
-      </ion-col>
-
-      <ion-col size="6">
-        <ion-item>
-          <ion-label position="stacked">Lote*</ion-label>
-          <ion-select
-            formControlName="newLote"
-            interface="action-sheet"
-            placeholder="Selecciones Lote"
-          >
-            <ion-select-option [value]="1">Lote 1</ion-select-option>
-            <ion-select-option [value]="2">Hawaii</ion-select-option>
-          </ion-select>
-        </ion-item>
-        <!-- <ion-item class="form-input ion-no-padding">
-            <ion-label class="ion-label" position="floating"
-              >Producto*</ion-label
+            <ion-select-option
+              class="form form__select-option"
+              *ngFor="let pf of productsFormulation$ | async"
+              [value]="pf"
+              >{{ pf.productRovianda }}</ion-select-option
             >
-            <ion-input placeholder="Ingresa PCC" formControlName="productId">
-            </ion-input>
-          </ion-item> -->
+          </ion-select>
+        </ion-item>
 
-        <div class="error">
+        <div
+          class="form form__message-container form__message-container--error"
+        >
           <ion-label
+            class="form form__label form__label--error"
             *ngIf="
               form.hasError('required', 'productId') &&
               (form.controls.productId.touched || form.controls.productId.dirty)
@@ -120,20 +74,114 @@
           >
             Este campo es requerido.
           </ion-label>
-          <ion-label *ngIf="form.hasError('whitespace', 'productId')">
+          <ion-label
+            class="form form__label form__label--error"
+            *ngIf="form.hasError('whitespace', 'productId')"
+          >
             No has introducido caracteres.
           </ion-label>
         </div>
       </ion-col>
     </ion-row>
-    <ion-row class="row row-3 ion-align-items-center">
-      <ion-col size="6">
-        <ion-row>
-          <ion-item class="form-input ion-no-padding">
-            <ion-label class="ion-label" position="floating">Fecha*</ion-label>
-            <ion-input formControlName="date"> </ion-input>
-          </ion-item>
-        </ion-row>
+
+    <ion-row
+      class="form form__row form__row--third ion-justify-content-center ion-align-items-center"
+    >
+      <ion-col class="form form__column" size="6">
+        <ion-item class="form form__item ion-no-padding">
+          <ion-label class="form form__label ion-label" position="floating"
+            >PCC*</ion-label
+          >
+          <ion-input
+            class="form form__input"
+            placeholder="Ingresa PCC"
+            formControlName="pcc"
+          >
+          </ion-input>
+        </ion-item>
+
+        <div
+          class="form form__message-container form__message-container--error"
+        >
+          <ion-label
+            class="form form__label form__label--error"
+            *ngIf="
+              form.hasError('required', 'pcc') &&
+              (form.controls.pcc.touched || form.controls.pcc.dirty)
+            "
+          >
+            Este campo es requerido.
+          </ion-label>
+          <ion-label
+            class="form form__label form__label--error"
+            *ngIf="form.hasError('whitespace', 'pcc')"
+          >
+            No has introducido caracteres.
+          </ion-label>
+        </div>
+      </ion-col>
+
+      <ion-col class="form form__column" size="6">
+        <ion-item class="form form__item">
+          <ion-label class="form form__label" position="stacked"
+            >Lote*</ion-label
+          >
+          <ion-select
+            class="form form__select"
+            formControlName="newLote"
+            interface="action-sheet"
+            placeholder="Seleccione Lote"
+          >
+            <ion-select-option
+              class="form form__select-option"
+              *ngFor="let l of lotesByProductFormulation"
+              [value]="l"
+              >{{ l }}</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+
+        <div class="form form__message-container">
+          <ion-label
+            class="form form__label form__label--error"
+            *ngIf="
+              form.hasError('required', 'newLote') &&
+              (form.controls.newLote.touched || form.controls.newLote.dirty)
+            "
+          >
+            Este campo es requerido.
+          </ion-label>
+          <ion-label
+            class="form form__label form__label--error"
+            *ngIf="form.hasError('whitespace', 'productId')"
+          >
+            No has introducido caracteres.
+          </ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="form form__row form__row--four ion-align-items-center">
+      <ion-col class="form form__column" size="6">
+        <ion-item class="form form__item ion-no-padding">
+          <ion-label class="form form__label ion-label" position="floating"
+            >Fecha*</ion-label
+          >
+          <ion-input class="form form__input" formControlName="date">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col class="form form__column" size="6">
+        <ion-item class="form form__item">
+          <ion-label class="form form__label" position="stacked"
+            >Horno</ion-label
+          >
+          <ion-input
+            class="form form__input"
+            type="number"
+            formControlName="oven"
+            placeholder="Honro"
+          ></ion-input>
+        </ion-item>
       </ion-col>
     </ion-row>
   </ion-grid>

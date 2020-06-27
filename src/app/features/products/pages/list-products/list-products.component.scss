@@ -99,13 +99,44 @@
         @include breakpoint-size(ms-medium) {
           height: 10%;
         }
+
+        ion-col {
+          h1 {
+            @include breakpoint-size(ms-extra-small) {
+              font-size: var(--fs-text-title-xsm);
+            }
+
+            @include breakpoint-size(ms-small) {
+              font-size: var(--fs-text-title-sm);
+            }
+
+            @include breakpoint-size(ms-medium) {
+              font-size: var(--fs-text-title-md);
+            }
+
+            @include breakpoint-size(ms-extra-large) {
+              font-size: var(--fs-text-title-xl);
+            }
+          }
+        }
       }
 
       &-2 {
         height: 5%;
 
         ion-col {
-          font-size: var(--font-size-md);
+          @include breakpoint-size(ms-extra-small) {
+            font-size: var(--fs-text-xsm);
+          }
+
+          @include breakpoint-size(ms-small) {
+            font-size: var(--fs-text-sm);
+            text-align: center;
+          }
+
+          @include breakpoint-size(ms-medium) {
+            font-size: var(--fs-text-md);
+          }
 
           @include breakpoint-size(ms-medium) {
             text-align: center;
@@ -127,8 +158,25 @@
 
         ion-col {
           ion-button {
-            height: 70px;
-            font-size: var(--font-size-md);
+            @include breakpoint-size(ms-extra-small) {
+              height: 35px;
+              font-size: var(--fs-text-xsm);
+            }
+
+            @include breakpoint-size(ms-small) {
+              height: 45px;
+              font-size: var(--fs-text-sm);
+            }
+
+            @include breakpoint-size(ms-medium) {
+              height: 30px;
+              font-size: var(--fs-text-md);
+            }
+
+            @include breakpoint-size(ms-extra-large) {
+              height: 40px;
+              font-size: var(--fs-text-xl);
+            }
           }
         }
       }

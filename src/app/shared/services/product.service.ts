@@ -25,11 +25,11 @@ export class ProductService {
   }
 
   getProductsFormulation(): Observable<ProductFormulation[]> {
-    return this.http.get<any[]>(`${this.url}/formulation/products`);
+    return this.http.get<any[]>(`${environment.basePath}/formulation/products`);
   }
 
   newProduct(payload: NewProduct): Observable<any> {
-    return this.http.post<any>(`${this.url}/product`, { payload });
+    return this.http.post<any>(`${this.url}/product`, payload);
   }
 
   getDetailProduct(id: number): Observable<ProductOvenDetail> {

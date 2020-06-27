@@ -21,7 +21,11 @@
           >
         </ion-row>
 
-        <ion-row>
+        <ion-row
+          *ngIf="(products$ | async)"
+          class="row-list"
+          style="overflow-y: scroll;"
+        >
           <ion-card
             class="item pointer ion-justify-content-center ion-align-self-center"
             *ngFor="let product of products$ | async; let i = index"
@@ -63,18 +67,26 @@
     </ion-grid>
     <div class="ion-justify-content-center">
       <ion-col>
-        <ion-row class="ion-justify-content-around btn">
+        <ion-row class="ion-justify-content-around">
           <ion-button
+            class="btn"
             [disabled]="(users$ | async) == null"
             (click)="endup()"
             color="secondary"
-            size="medium"
+            expand="block"
+            size="large"
           >
             <ion-grid>
               <ion-col>Terminar</ion-col>
             </ion-grid>
           </ion-button>
-          <ion-button color="primary" size="medium" (click)="addUsers()">
+          <ion-button
+            class="btn"
+            color="primary"
+            size="large"
+            expand="block"
+            (click)="addUsers()"
+          >
             Usuarios
           </ion-button>
         </ion-row>

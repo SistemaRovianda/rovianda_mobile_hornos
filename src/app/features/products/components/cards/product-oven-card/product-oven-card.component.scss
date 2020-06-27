@@ -1,13 +1,47 @@
+@import "../../../../../../theme/mixins.scss";
+
 ion-grid {
   width: 98%;
   height: 65px;
   border-radius: 10px;
   background-color: var(--ion-color-secondary);
 
+  @include breakpoint-size(ms-extra-small) {
+    height: 50px;
+  }
+
+  @include breakpoint-size(ms-small) {
+    height: 60px;
+  }
+
+  @include breakpoint-size(ms-medium) {
+    height: 45px;
+  }
+
+  @include breakpoint-size(ms-extra-large) {
+    height: 55px;
+  }
+
   ion-row {
     ion-col {
       font-size: var(--font-size-md);
       color: var(--ion-color-medium-contrast);
+
+      @include breakpoint-size(ms-extra-small) {
+        font-size: var(--fs-text-xsm);
+      }
+
+      @include breakpoint-size(ms-small) {
+        font-size: var(--fs-text-sm);
+      }
+
+      @include breakpoint-size(ms-medium) {
+        font-size: var(--fs-text-md);
+      }
+
+      @include breakpoint-size(ms-extra-large) {
+        font-size: var(--fs-text-xl);
+      }
     }
   }
 }

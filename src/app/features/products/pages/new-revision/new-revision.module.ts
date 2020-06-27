@@ -6,9 +6,16 @@ import { IonicModule } from "@ionic/angular";
 
 import { NewRevisionPage } from "./new-revision.page";
 import { RevisionDataFormModule } from "../../components/revision-data-form/revision-data-form.module";
+import { TitleHeaderModule } from "src/app/shared/components/header/header.module";
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, RevisionDataFormModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    RevisionDataFormModule,
+    TitleHeaderModule,
+  ],
   declarations: [NewRevisionPage],
   exports: [NewRevisionPage],
 })

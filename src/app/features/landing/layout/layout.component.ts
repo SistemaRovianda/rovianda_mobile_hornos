@@ -3,6 +3,7 @@ import { Store } from "@ngrx/store";
 import { AppStateInterface } from "src/app/shared/models/storeState.interface";
 import { SignIn } from "src/app/shared/models/user.interface";
 import * as fromLoginActions from "../store/login/login.action";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-layout",
@@ -10,12 +11,16 @@ import * as fromLoginActions from "../store/login/login.action";
   styleUrls: ["./layout.component.scss"],
 })
 export class LayoutComponent implements OnInit {
-  constructor(private store: Store<AppStateInterface>) {}
+  constructor(
+    private store: Store<AppStateInterface>,
+    private router: Router
+  ) {}
 
   ngOnInit() {}
 
   onLogin(payload: SignIn) {
     this.store.dispatch(fromLoginActions.signIn(payload));
+    // this.router.navigate(["/product/list"]);
   }
 
   recoverPassword() {
