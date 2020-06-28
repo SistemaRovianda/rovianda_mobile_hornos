@@ -6,6 +6,7 @@ import { TitleHeaderModule } from "src/app/shared/components/header/header.modul
 import { RouterModule } from "@angular/router";
 import { StepperModule } from "src/app/shared/components/stepper/stepper.module";
 import { ObservationsDialogModule } from "../../dialogs/observations-dialog/observations-dialog.module";
+import { ProductReviewCardModule } from "../../components/cards/product-review-card/product-review-card.module";
 
 const COMMON_IMPORTS = [
   CommonModule,
@@ -13,7 +14,7 @@ const COMMON_IMPORTS = [
   TitleHeaderModule,
   RouterModule,
   StepperModule,
-  ObservationsDialogModule,
+  ProductReviewCardModule,
 ];
 
 const COMMON_DECLARATIONS = [ProductReviewListPageComponent];

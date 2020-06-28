@@ -1,0 +1,64 @@
+@import "../../../../../../theme/mixins.scss";
+
+.card {
+  --background: var(--ion-color-secondary);
+  --color: var(--ion-color-medium-contrast);
+
+  &--all {
+    @include breakpoint-size(ms-extra-small) {
+      height: 60px;
+    }
+
+    @include breakpoint-size(ms-small) {
+      height: 75px;
+    }
+
+    @include breakpoint-size(ms-medium) {
+      height: 50px;
+    }
+
+    @include breakpoint-size(ms-extra-large) {
+      height: 70px;
+    }
+  }
+
+  &__column {
+    @include breakpoint-size(ms-extra-small) {
+      font-size: var(--fs-text-xsm);
+    }
+
+    @include breakpoint-size(ms-small) {
+      font-size: var(--fs-text-sm);
+    }
+
+    @include breakpoint-size(ms-medium) {
+      font-size: var(--fs-text-md);
+    }
+
+    @include breakpoint-size(ms-extra-large) {
+      font-size: var(--fs-text-xl);
+    }
+  }
+
+  &__button {
+    @include breakpoint-size(ms-extra-small) {
+      font-size: var(--fs-text-title-xsm);
+      height: 35px;
+    }
+
+    @include breakpoint-size(ms-small) {
+      font-size: var(--fs-text-title-sm);
+      height: 45px;
+    }
+
+    @include breakpoint-size(ms-medium) {
+      font-size: var(--fs-text-title-md);
+      height: 30px;
+    }
+
+    @include breakpoint-size(ms-extra-large) {
+      font-size: var(--fs-text-title-xl);
+      height: 40px;
+    }
+  }
+}

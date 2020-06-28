@@ -48,27 +48,6 @@ export class ProductReviewListPageComponent implements OnInit {
     return parseInt(this.route.snapshot.paramMap.get("id"));
   }
 
-  observations(product: Revision) {
-    const revision = {
-      hour: product.hour,
-      interTemp: product.interTemp,
-      ovenTemp: product.ovenTemp,
-      observations: product.observations,
-    };
-    this.openModal(revision);
-  }
-
-  async openModal(revision) {
-    const modal = await this.modalController.create({
-      component: ObservationsDialogComponent,
-      cssClass: "modal-observations",
-      componentProps: {
-        revision: revision,
-      },
-    });
-    return await modal.present();
-  }
-
   endup() {
     this.router.navigate(["/product/list"]);
   }

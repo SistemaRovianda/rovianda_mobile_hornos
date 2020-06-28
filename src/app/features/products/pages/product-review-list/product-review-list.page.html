@@ -5,92 +5,78 @@
 ></title-header>
 
 <ion-content>
-  <div class="container">
-    <ion-grid class="container-products">
-      <ion-row size="12">
-        <ion-col size="12">
-          <h1 class="title-menu">Revisión del producto</h1>
-        </ion-col>
-      </ion-row>
-      <ion-col>
-        <ion-row size="12">
-          <ion-col class="text-dark" size="2"></ion-col>
-          <ion-col class="text-dark" size="5">Hora</ion-col>
-          <ion-col class="text-dark ion-text-center" size="5"
-            >Observaciones</ion-col
-          >
-        </ion-row>
-
-        <ion-row
-          *ngIf="(products$ | async)"
-          class="row-list"
-          style="overflow-y: scroll;"
-        >
-          <ion-card
-            class="item pointer ion-justify-content-center ion-align-self-center"
-            *ngFor="let product of products$ | async; let i = index"
-          >
-            <ion-row>
-              <ion-col
-                class="text-dark ion-justify-content-center ion-align-self-center ion-text-center"
-                size="2"
-              >
-                <ion-icon
-                  lot="start"
-                  class="label-button icon-white"
-                  src="/assets/icons/clipboard.svg"
-                ></ion-icon
-              ></ion-col>
-              <ion-col
-                size="5"
-                class="ion-justify-content-center ion-align-self-center"
-                >{{ product.hour }}</ion-col
-              >
-              <ion-col size="5" class="ion-text-center">
-                <ion-button
-                  expand="block"
-                  color="primary"
-                  style="text-transform: none;"
-                  size="medium"
-                  (click)="observations(product)"
-                >
-                  Observaciones
-                </ion-button>
-              </ion-col>
-            </ion-row>
-          </ion-card>
-        </ion-row>
+  <ion-grid class="container container--all">
+    <ion-row class="container container__row container__row--title" size="12">
+      <ion-col class="container container__column" size="12">
+        <h1 class="container container__title">Revisión del producto</h1>
       </ion-col>
-      <ion-col *ngIf="!(products$ | async)" class="text-dark"
+    </ion-row>
+    <ion-row class="container container__row container__row--headers">
+      <ion-col
+        class="container container__column container__column--header"
+        size="2"
+      ></ion-col>
+      <ion-col
+        class="container container__column container__column--header"
+        size="5"
+        >Hora</ion-col
+      >
+      <ion-col
+        class="container container__column container__column--header"
+        size="5"
+        >Observaciones</ion-col
+      >
+    </ion-row>
+
+    <ion-row
+      class="container container__row container__row--data"
+      *ngIf="(products$ | async)"
+      style="overflow-y: scroll;"
+    >
+      <ion-col
+        class="container container__column container__column--with-data"
+        size="12"
+      >
+        <app-product-review-card
+          *ngFor="let product of products$ | async; let i = index"
+          [productReview]="product"
+        ></app-product-review-card>
+      </ion-col>
+      <ion-col
+        class="container container__column container__column--empty"
+        *ngIf="!(products$ | async)"
         >No existen productos</ion-col
       >
-    </ion-grid>
-    <div class="ion-justify-content-center">
-      <ion-col>
-        <ion-row class="ion-justify-content-around">
-          <ion-button
-            class="btn"
-            [disabled]="(users$ | async) == null"
-            (click)="endup()"
-            color="secondary"
-            expand="block"
-            size="large"
-          >
-            <ion-grid>
-              <ion-col>Terminar</ion-col>
-            </ion-grid>
-          </ion-button>
-          <ion-button
-            class="btn"
-            color="primary"
-            size="large"
-            expand="block"
-            (click)="addUsers()"
-          >
-            Usuarios
-          </ion-button>
-        </ion-row>
+    </ion-row>
+    <!-- <ion-row class="container container__column container__column--list-empty">
+     
+    </ion-row> -->
+    <ion-row
+      class="container container__row container__row--buttons ion-justify-content-center ion-align-items-center"
+    >
+      <ion-col class="container container__column">
+        <ion-button
+          class="container container__button"
+          [disabled]="(users$ | async) == null"
+          (click)="endup()"
+          color="secondary"
+          expand="block"
+          size="large"
+        >
+          Terminar
+        </ion-button>
       </ion-col>
-    </div>
-  </div>
+      <ion-col class="container container__column">
+        <ion-button
+          class="container container__button"
+          color="primary"
+          size="large"
+          expand="block"
+          (click)="addUsers()"
+        >
+          Usuarios
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
