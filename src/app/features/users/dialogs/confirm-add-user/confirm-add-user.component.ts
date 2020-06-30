@@ -21,6 +21,7 @@ export class ConfirmAddUserComponent implements OnInit {
   ngOnInit() {}
 
   accept() {
+    console.log("[GUARDAR] processId: ", this.id, " users: ", this.users);
     this.store.dispatch(
       registerUsers({ processId: this.id, users: this.users })
     );

@@ -16,7 +16,7 @@ export class UsersResolve implements Resolve<boolean> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean | import("rxjs").Observable<boolean> | Promise<boolean> {
-    this._store.dispatch(fetchUsers({ processId: route.params.id }));
+    this._store.dispatch(fetchUsers());
     return true;
   }
 }

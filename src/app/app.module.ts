@@ -20,6 +20,7 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { HttpClientModule } from "@angular/common/http";
 import { effects } from "./shared/store/effects/index.effects";
 import { MessageDialogModule } from "./features/products/dialogs/message-dialog/message-dialog.module";
+import { IonicStorageModule } from "@ionic/storage";
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,6 +31,7 @@ import { MessageDialogModule } from "./features/products/dialogs/message-dialog/
     AppRoutingModule,
     AppProvidersModule,
     AngularFireAuthModule,
+    IonicStorageModule.forRoot(),
     StoreModule.forRoot(reducers, {
       metaReducers,
       runtimeChecks: {

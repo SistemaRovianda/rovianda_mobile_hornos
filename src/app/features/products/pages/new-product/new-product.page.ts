@@ -98,4 +98,14 @@ export class NewProductPageComponent implements OnInit {
   cancel() {
     this._router.navigate(["product/list"]);
   }
+
+  onBackPage(event) {
+    console.log("holi back");
+    this.store.dispatch(fromStepperActions.stepperReset());
+    this._router.navigate(["product/list"]);
+    this.revisionDataForm.form.reset();
+    this.index$.next(0);
+  }
+
+  resetData() {}
 }

@@ -45,4 +45,8 @@ export class NewRevisionPage implements OnInit {
       `product/${this._route.snapshot.paramMap.get("id")}/revisions`,
     ]);
   }
+
+  onBackPage(evt) {
+    this._router.navigate(["product/list"]);
+  }
 }

@@ -2,17 +2,21 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { from, of } from "rxjs";
-import { catchError, delay, exhaustMap, switchMap } from "rxjs/operators";
+import { catchError, delay, exhaustMap, switchMap, tap } from "rxjs/operators";
 import * as fromLoginActions from "src/app/features/landing/store/login/login.action";
 import * as fromAuthActions from "src/app/features/landing/store/authentication/authentication.action";
 import { AuthService } from "src/app/shared/Services/auth.service";
+import { Platform } from "@ionic/angular";
+import { Storage } from "@ionic/storage";
 
 @Injectable()
 export class LogginEffects {
   constructor(
     private action$: Actions,
     private _authService: AuthService,
-    private _router: Router
+    private _router: Router,
+    private _storage: Storage,
+    private _ptl: Platform
   ) {}
 
   signInEffect$ = createEffect(() =>
@@ -47,7 +51,7 @@ export class LogginEffects {
       exhaustMap((action) =>
         this._authService.getTokenCurrentUser().pipe(
           switchMap(({ currentToken }) => {
-            localStorage.setItem("token", currentToken);
+            this._storage.set("token", currentToken);
             return [
               fromAuthActions.loadUser({ currentToken }),
               fromLoginActions.signAuthSuccess({ uid: action.uid }),
@@ -70,14 +74,20 @@ export class LogginEffects {
       exhaustMap((action) =>
         this._authService.getUserData(action.uid).pipe(
           delay(3000),
-          switchMap(({ name, lastSurname, firstSurname, rol }) => {
-            localStorage.setItem("role", rol);
+          switchMap(({ name, lastSurname, firstSurname, rol, job }) => {
+            this._storage.set("role", rol);
+            this._storage.set(
+              "currentUser",
+              name + " " + firstSurname + " " + lastSurname
+            );
+            this._storage.set("job", job);
             return [
               fromAuthActions.loadUser({
                 name,
                 lastSurname,
                 firstSurname,
                 rol,
+                job,
               }),
               fromLoginActions.signInSuccess(),
             ];
@@ -109,6 +119,29 @@ export class LogginEffects {
               fromLoginActions.signInFailure(error)
             )
           )
+        )
+      )
+    )
+  );
+
+  signInFailureEffect$ = createEffect(
+    () =>
+      this.action$.pipe(
+        ofType(fromLoginActions.signInFailure),
+        tap((action) => this._storage.clear())
+      ),
+    {
+      dispatch: false,
+    }
+  );
+
+  signOutEffect$ = createEffect(() =>
+    this.action$.pipe(
+      ofType(fromLoginActions.signOut),
+      exhaustMap((action) =>
+        this._authService.signOut().pipe(
+          switchMap((_) => [fromAuthActions.clearUser()]),
+          catchError((error) => of(fromLoginActions.signInFailure(error)))
         )
       )
     )

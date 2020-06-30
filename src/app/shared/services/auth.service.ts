@@ -7,6 +7,8 @@ import { map } from "rxjs/operators";
 import { API_ENDPOINT_PROVIDER } from "src/app/providers/tokens";
 import { UserInterface } from "../models/user.interface";
 import Auth = firebase.auth.Auth;
+import { Storage } from "@ionic/storage";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: "root",
@@ -17,6 +19,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
+    private storage: Storage,
+    private router: Router,
     @Inject(API_ENDPOINT_PROVIDER) private endpoint
   ) {
     this.url = `${endpoint}/user`;
@@ -43,25 +47,26 @@ export class AuthService {
 
   getUserData(uid: string): Observable<UserInterface> {
     return this.http.get<UserInterface>(`${this.url}/${uid}`);
-
-    // let user: UserInterface = {
-    //   name: "Damian",
-    //   lastSurname: "Zamora",
-    //   firstSurname: "Celiseo",
-    //   rol: "ROLE",
-    // };
-
-    // return new Observable((observer) => {
-    //   observer.next(user);
-    //   observer.complete();
-    // });
   }
 
-  isAuth(): boolean {
-    return (
-      localStorage.getItem("token") != null ||
-      localStorage.getItem("role") == "OVEN"
-    );
+  isAuth(): Observable<any> {
+    return from(
+      this.storage.get("token").then((token) => {
+        console.log("Token: ", token);
+        if (token) return Promise.resolve(true);
+        return false;
+      })
+    ).pipe(map((val) => val));
+  }
+
+  verifyRole(): Observable<boolean> {
+    return from(
+      this.storage.get("role").then((role) => {
+        console.log("rol: ", role);
+        if (role != null && role == "OVEN") return Promise.resolve(true);
+        return Promise.resolve(false);
+      })
+    ).pipe(map((res) => res));
   }
 
   getTokenCurrentUser(): Observable<any> {
@@ -71,5 +76,16 @@ export class AuthService {
         .then((res) => Promise.all([Promise.resolve(res)]))
         .catch((error) => Promise.all(error))
     ).pipe(map(([currentToken]) => ({ currentToken })));
+  }
+
+  signOut(): Observable<any> {
+    this.storage.clear().then((res) => {
+      console.log("Clear Storage");
+    });
+    return from(
+      this.auth.signOut().then((res) => {
+        this.router.navigate(["/login"], { replaceUrl: true });
+      })
+    );
   }
 }

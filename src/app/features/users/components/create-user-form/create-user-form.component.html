@@ -8,7 +8,9 @@
           >
           <ion-input
             class="form form__input"
-            placeholder="Nombre"
+            disabled="true"
+            placeholder="{{ nameElaborated | async }}"
+            value="{{ nameElaborated | async }}"
             formControlName="nameElaborated"
           >
           </ion-input>
@@ -37,14 +39,14 @@
           <ion-label class="form form__label" position="floating"
             >Puesto*</ion-label
           >
-
-          <ion-select
-            class="form form__select"
-            interface="action-sheet"
-            placeholder="Seleccione puesto"
+          <ion-input
+            class="form form__input"
+            disabled="true"
+            placeholder="{{ job | async }}"
+            value="{{ job | async }}"
             formControlName="jobElaborated"
           >
-          </ion-select>
+          </ion-input>
         </ion-item>
 
         <div class="form form__message-container">
@@ -74,7 +76,13 @@
             interface="action-sheet"
             placeholder="Seleccione nombre"
             formControlName="nameVerify"
+            (ionChange)="selectNameVerify($event)"
           >
+            <ion-select-option
+              *ngFor="let user of users | async"
+              [value]="user"
+              >{{ user.fullName }}</ion-select-option
+            >
           </ion-select>
         </ion-item>
 
@@ -96,14 +104,14 @@
           <ion-label class="form form__label" position="floating"
             >Puesto*</ion-label
           >
-
-          <ion-select
-            class="form form__select"
-            interface="action-sheet"
-            placeholder="Seleccione puesto"
+          <ion-input
+            class="form form__input"
+            disabled="true"
+            placeholder="{{ job | async }}"
+            value="{{ userVerifyJob }}"
             formControlName="jobVerify"
           >
-          </ion-select>
+          </ion-input>
         </ion-item>
 
         <div class="form form__message-container">

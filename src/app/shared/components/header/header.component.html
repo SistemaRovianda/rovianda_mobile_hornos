@@ -1,12 +1,21 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button
+      <!-- <ion-back-button
         class="ion-text-sm-center ion-text-md-center ion-text-lg-center"
         [text]="titlePath || 'titlePath'"
         [defaultHref]="path || '/'"
         icon="arrow-back"
-      ></ion-back-button>
+      ></ion-back-button> -->
+      <ion-button
+        (click)="onClickBack()"
+        expand="block"
+        fill="clear"
+        shape="round"
+      >
+        <ion-icon lot="start" name="arrow-back-outline"></ion-icon>
+        {{ titlePath || "Regresar" }}
+      </ion-button>
     </ion-buttons>
     <ion-title text-center>
       <ion-grid>

@@ -1,4 +1,4 @@
-import { createReducer, on } from "@ngrx/store";
+import { createReducer, on, Action } from "@ngrx/store";
 import * as fromActions from "./list-products.actions";
 import { Products } from "src/app/shared/models/oven.interface";
 
@@ -14,7 +14,7 @@ const initialState: newState = {
   loading: false,
 };
 
-export const ListProductsReducer = createReducer<newState>(
+const _listProductsReducer = createReducer<newState>(
   initialState,
   on(fromActions.fetchAllProducts, (state) => ({
     ...state,
@@ -33,3 +33,7 @@ export const ListProductsReducer = createReducer<newState>(
     error,
   }))
 );
+
+export function listProductsReducer(state: newState, action: Action) {
+  return _listProductsReducer(state, action);
+}

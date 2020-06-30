@@ -6,6 +6,7 @@ import * as fromProductsActions from "../../store/list-products/list-products.ac
 import { Observable } from "rxjs";
 import { Products } from "src/app/shared/models/oven.interface";
 import { fetchAllProducts } from "../../store/list-products/list-products.selector";
+import { signOut } from "src/app/features/landing/store/login/login.action";
 
 @Component({
   selector: "app-list-products",
@@ -21,5 +22,9 @@ export class ListProductsComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(fromProductsActions.fetchAllProducts());
+  }
+
+  signOut(evt) {
+    this.store.dispatch(signOut());
   }
 }

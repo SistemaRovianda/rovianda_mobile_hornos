@@ -1,4 +1,4 @@
-import { createReducer, on } from "@ngrx/store";
+import { createReducer, on, Action } from "@ngrx/store";
 import { NewProduct } from "src/app/shared/models/oven.interface";
 import * as fromActions from "./new-product.actions";
 import { newProductState } from "src/app/shared/models/storeState.interface";
@@ -9,7 +9,7 @@ const initialState: newProductState = {
   loading: false,
 };
 
-export const NewProductReducer = createReducer<newProductState>(
+const _newProductReducer = createReducer<newProductState>(
   initialState,
   on(fromActions.newProduct, (state, { product }) => ({
     ...state,
@@ -28,3 +28,7 @@ export const NewProductReducer = createReducer<newProductState>(
     error,
   }))
 );
+
+export function newProductReducer(state: newProductState, action: Action) {
+  return _newProductReducer(state, action);
+}

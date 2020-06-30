@@ -6,6 +6,7 @@ import { catchError, exhaustMap, tap } from "rxjs/operators";
 import { ProductService } from "src/app/shared/services/product.service";
 import { MessageDialogComponent } from "../../dialogs/message-dialog/message-dialog.component";
 import * as fromActions from "./new-product.actions";
+import { stepperReset } from "src/app/shared/store/stepper/stepper.actions";
 
 @Injectable({
   providedIn: "root",
@@ -24,6 +25,7 @@ export class NewProductEffects {
         this.productsService.newProduct(action.product).pipe(
           tap(() => {
             fromActions.newProductSuccess();
+            stepperReset();
             this.openModal("Exitó", "¡Se ha guardado con exitó!");
           }),
           catchError((error) => this.errorHandler(error))

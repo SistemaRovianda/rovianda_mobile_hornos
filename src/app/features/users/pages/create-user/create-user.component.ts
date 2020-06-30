@@ -75,4 +75,8 @@ export class CreateUserComponent implements OnInit {
 
     return await modal.present();
   }
+
+  onBackPage(evt) {
+    this.router.navigate([`product/${this.route.snapshot.paramMap.get("id")}`]);
+  }
 }

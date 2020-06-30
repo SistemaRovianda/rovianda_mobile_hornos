@@ -12,6 +12,8 @@ import { usersSelector } from "../../store/users/users.selectors";
 import { MessageDialogComponent } from "../../dialogs/message-dialog/message-dialog.component";
 import { clearUsers } from "../../store/users/users.actions";
 import { User } from "firebase";
+import { UsersCheckers } from "src/app/shared/models/user.interface";
+import { SELECT_USERS_CHECKED } from "../../store/usersChecked/users-checked.selectors";
 
 @Component({
   selector: "app-product-review-list",
@@ -21,7 +23,7 @@ import { User } from "firebase";
 export class ProductReviewListPageComponent implements OnInit {
   products$: Observable<Revision[]>;
 
-  users$: Observable<User>;
+  users$: Observable<UsersCheckers>;
 
   constructor(
     private store: Store<AppStateInterface>,
@@ -41,7 +43,7 @@ export class ProductReviewListPageComponent implements OnInit {
       }
     });
 
-    this.users$ = this.store.select(usersSelector);
+    this.users$ = this.store.select(SELECT_USERS_CHECKED);
   }
 
   get id(): number {
@@ -56,5 +58,9 @@ export class ProductReviewListPageComponent implements OnInit {
     this.router.navigate([
       `/user/${this.route.snapshot.paramMap.get("id")}/create-user`,
     ]);
+  }
+
+  onBackPage(evt) {
+    this.router.navigate([`product/${this.route.snapshot.paramMap.get("id")}`]);
   }
 }

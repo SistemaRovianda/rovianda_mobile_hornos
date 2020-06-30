@@ -1,4 +1,4 @@
-import { createReducer, on } from "@ngrx/store";
+import { createReducer, on, Action } from "@ngrx/store";
 import { DetailReviewList } from "src/app/shared/models/storeState.interface";
 import * as fromActions from "./product-review-list.actions";
 
@@ -8,7 +8,7 @@ const initialState: DetailReviewList = {
   loading: false,
 };
 
-export const DetailReviewListReducer = createReducer<DetailReviewList>(
+const _detailReviewListReducer = createReducer<DetailReviewList>(
   initialState,
   on(fromActions.fetchAllDetail, (state, { id }) => ({
     ...state,
@@ -27,3 +27,10 @@ export const DetailReviewListReducer = createReducer<DetailReviewList>(
     error,
   }))
 );
+
+export function detailReviewListReducer(
+  state: DetailReviewList,
+  action: Action
+) {
+  return _detailReviewListReducer(state, action);
+}

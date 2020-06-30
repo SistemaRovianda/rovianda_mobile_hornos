@@ -1,5 +1,5 @@
 import { ProductFormulation } from "src/app/shared/models/product.interface";
-import { createReducer, on } from "@ngrx/store";
+import { createReducer, on, Action } from "@ngrx/store";
 import {
   loadProductsFormulation,
   loadProductsFormulationSuccess,
@@ -18,9 +18,7 @@ const initialState: ProductsFormulationState = {
   error: null,
 };
 
-export const productsFormulationReducer = createReducer<
-  ProductsFormulationState
->(
+const _productsFormulationReducer = createReducer<ProductsFormulationState>(
   initialState,
   on(loadProductsFormulation, (state) => ({
     ...state,
@@ -35,3 +33,10 @@ export const productsFormulationReducer = createReducer<
     error,
   }))
 );
+
+export function productsFormulationReducer(
+  state: ProductsFormulationState,
+  action: Action
+) {
+  return _productsFormulationReducer(state, action);
+}

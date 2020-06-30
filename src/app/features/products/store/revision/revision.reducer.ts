@@ -1,5 +1,5 @@
 import { Revision } from "src/app/shared/models/oven.interface";
-import { createReducer, on } from "@ngrx/store";
+import { createReducer, on, Action } from "@ngrx/store";
 import {
   registerRevision,
   registerRevisionSuccess,
@@ -18,7 +18,7 @@ const initialState: RevisionState = {
   error: null,
 };
 
-export const revisionReducer = createReducer(
+const _revisionReducer = createReducer(
   initialState,
   on(registerRevision, (state) => ({
     ...state,
@@ -33,3 +33,7 @@ export const revisionReducer = createReducer(
     error,
   }))
 );
+
+export function revisionReducer(state: RevisionState, action: Action) {
+  return _revisionReducer(state, action);
+}

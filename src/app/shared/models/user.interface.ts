@@ -7,6 +7,7 @@ export interface UserInterface {
   lastSurname?: string;
   email?: string;
   rol?: string;
+  job?: string;
 }
 
 export interface SignIn {
@@ -14,7 +15,14 @@ export interface SignIn {
   password: string;
 }
 
-export interface user {
+export interface UserRegistered {
+  userId: string;
+  fullName: string;
+  rol: string;
+  job: string;
+}
+
+export interface UsersCheckers {
   nameElaborated: string;
   jobElaborated: string;
   nameVerify: string;

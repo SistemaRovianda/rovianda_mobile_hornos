@@ -1,4 +1,4 @@
-import { createReducer, on } from "@ngrx/store";
+import { createReducer, on, Action } from "@ngrx/store";
 import * as fromStepperActions from "./stepper.actions";
 import { SteppersInterface } from "../../models/stepper.interface";
 
@@ -13,7 +13,7 @@ const STATE_INITIAL_STEPPER: SteppersInterface = {
   ],
 };
 
-export const StepperInitialReducer = createReducer<SteppersInterface>(
+const _stepperInitialReducer = createReducer<SteppersInterface>(
   STATE_INITIAL_STEPPER,
   on(fromStepperActions.stepperNext, (state, { num, step }) => ({
     ...state,
@@ -28,5 +28,23 @@ export const StepperInitialReducer = createReducer<SteppersInterface>(
     ...state,
     steps: state.steps.slice(1).concat({ value: false }),
   })),
-  on(fromStepperActions.stepperInit, (state) => STATE_INITIAL_STEPPER)
+  on(fromStepperActions.stepperInit, (state) => STATE_INITIAL_STEPPER),
+  on(fromStepperActions.stepperReset, (state) => ({
+    ...state,
+    steps: [
+      {
+        value: true,
+      },
+      {
+        value: false,
+      },
+    ],
+  }))
 );
+
+export function stepperInitialReducer(
+  state: SteppersInterface,
+  action: Action
+) {
+  return _stepperInitialReducer(state, action);
+}

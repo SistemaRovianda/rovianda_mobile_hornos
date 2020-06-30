@@ -1,5 +1,4 @@
-import { User } from "firebase";
-import { createReducer, on } from "@ngrx/store";
+import { createReducer, on, Action } from "@ngrx/store";
 import {
   registerUsersError,
   fetchUsersError,
@@ -7,10 +6,11 @@ import {
   fetchUsers,
   clearUsers,
 } from "./users.actions";
+import { UserRegistered } from "src/app/shared/models/user.interface";
 
 export interface UsersState {
   loading: boolean;
-  users: User;
+  users: UserRegistered[];
   error: string;
 }
 
@@ -20,7 +20,7 @@ const initialState: UsersState = {
   error: null,
 };
 
-export const usersReducer = createReducer<UsersState>(
+const _usersReducer = createReducer<UsersState>(
   initialState,
   on(fetchUsers, (state) => ({
     ...state,
@@ -45,3 +45,7 @@ export const usersReducer = createReducer<UsersState>(
     users: null,
   }))
 );
+
+export function usersReducer(state: UsersState, action: Action) {
+  return _usersReducer(state, action);
+}

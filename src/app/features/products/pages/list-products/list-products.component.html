@@ -1,7 +1,7 @@
 <title-header
   [titlePath]="'Salir'"
-  [path]="'/'"
   [title]="'Hornos'"
+  (onBack)="signOut($event)"
 ></title-header>
 
 <ion-content>
@@ -44,7 +44,7 @@
             expand="block"
             color="primary"
             size="large"
-            href="/product/new-product"
+            [routerLink]="['/product/new-product']"
           >
             Agregar nuevo registro
           </ion-button>
