@@ -2,25 +2,25 @@
 
 ion-grid {
   width: 98%;
-  height: 65px;
+  height: auto;
   border-radius: 10px;
   background-color: var(--ion-color-secondary);
 
-  @include breakpoint-size(ms-extra-small) {
-    height: 50px;
-  }
+  // @include breakpoint-size(ms-extra-small) {
+  //   height: 50px;
+  // }
 
-  @include breakpoint-size(ms-small) {
-    height: 60px;
-  }
+  // @include breakpoint-size(ms-small) {
+  //   height: 60px;
+  // }
 
-  @include breakpoint-size(ms-medium) {
-    height: 45px;
-  }
+  // @include breakpoint-size(ms-medium) {
+  //   height: 45px;
+  // }
 
-  @include breakpoint-size(ms-extra-large) {
-    height: 55px;
-  }
+  // @include breakpoint-size(ms-extra-large) {
+  //   height: 55px;
+  // }
 
   ion-row {
     ion-col {
