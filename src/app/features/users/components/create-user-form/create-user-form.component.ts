@@ -60,10 +60,10 @@ export class CreateUserFormComponent implements OnInit {
     const user = {
       nameElaborated: nameElaborated.trim(),
       jobElaborated: jobElaborated.trim(),
-      nameVerify: nameVerify.fullName,
+      nameVerify: nameVerify.userId,
       jobVerify: jobVerify.trim(),
     };
-    // console.log("user: ", user);
+
     this.submit.emit(user);
   }
 

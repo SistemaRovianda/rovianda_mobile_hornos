@@ -24,7 +24,7 @@ export class UsersEffects {
     this._actions$.pipe(
       ofType(fetchUsers),
       exhaustMap((action) =>
-        this._usersService.getUsers().pipe(
+        this._usersService.getUsers(action.role).pipe(
           switchMap((users) => [fetchUsersSuccess({ users: users })]),
           catchError((error) => of(fetchUsersError(error)))
         )

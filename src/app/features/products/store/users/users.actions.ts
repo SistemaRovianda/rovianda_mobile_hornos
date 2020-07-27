@@ -16,7 +16,7 @@ const REGISTER_USERS_ERROR = "[USERS] Register users error";
 
 const CLEAR_USERS = "[USERS] Clear Users";
 
-export const fetchUsers = createAction(FETCH_USERS);
+export const fetchUsers = createAction(FETCH_USERS, props<{ role: string }>());
 
 export const fetchUsersSuccess = createAction(
   FETCH_USERS_SUCCESS,

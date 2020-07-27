@@ -44,19 +44,7 @@ export class RevisionEffects {
   );
 
   errorHandler(error: any) {
-    this.openModal("Error", "¡Ha ocurrido un problema, intente de nuevo!");
+    this.toastService.presentToastError();
     return of(registerRevisionError(error));
-  }
-
-  async openModal(title: string, message: string) {
-    const modal = await this._modalCtrl.create({
-      component: MessageDialogComponent,
-      cssClass: "modal-size",
-      componentProps: {
-        title: title,
-        message: message,
-      },
-    });
-    return await modal.present();
   }
 }

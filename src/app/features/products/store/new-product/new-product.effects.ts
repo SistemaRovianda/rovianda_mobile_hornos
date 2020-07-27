@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { ModalController } from "@ionic/angular";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { Observable, of } from "rxjs";
+import { of } from "rxjs";
 import { catchError, exhaustMap, tap } from "rxjs/operators";
 import { ProductService } from "src/app/shared/services/product.service";
-import { MessageDialogComponent } from "../../dialogs/message-dialog/message-dialog.component";
-import * as fromActions from "./new-product.actions";
+import { ToastService } from "src/app/shared/services/toast.service";
 import { stepperReset } from "src/app/shared/store/stepper/stepper.actions";
+import * as fromActions from "./new-product.actions";
 
 @Injectable({
   providedIn: "root",
@@ -15,7 +15,8 @@ export class NewProductEffects {
   constructor(
     private actions$: Actions,
     private productsService: ProductService,
-    public modalController: ModalController
+    public modalController: ModalController,
+    public toast: ToastService
   ) {}
 
   product$ = createEffect(() =>
@@ -26,7 +27,7 @@ export class NewProductEffects {
           tap(() => {
             fromActions.newProductSuccess();
             stepperReset();
-            this.openModal("Exitó", "¡Se ha guardado con exitó!");
+            this.toast.presentToastSuccess();
           }),
           catchError((error) => this.errorHandler(error))
         )
@@ -35,19 +36,7 @@ export class NewProductEffects {
   );
 
   errorHandler(error: any) {
-    this.openModal("Error", "¡Ha ocurrido un problema, intente de nuevo!");
+    this.toast.presentToastError();
     return of(fromActions.newProductError(error));
-  }
-
-  async openModal(title: string, message: string) {
-    const modal = await this.modalController.create({
-      component: MessageDialogComponent,
-      cssClass: "modal-size",
-      componentProps: {
-        title: title,
-        message: message,
-      },
-    });
-    return await modal.present();
   }
 }

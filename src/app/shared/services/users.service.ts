@@ -1,6 +1,6 @@
-import { Injectable, Inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Inject, Injectable } from "@angular/core";
+import { BehaviorSubject, Observable } from "rxjs";
 import { API_ENDPOINT_PROVIDER } from "src/app/providers/tokens";
 import { UserRegistered, UsersCheckers } from "../models/user.interface";
 
@@ -13,9 +13,8 @@ export class UsersService {
     @Inject(API_ENDPOINT_PROVIDER) private endpoint
   ) {}
 
-  getUsers(): Observable<UserRegistered[]> {
-    // return this.http.get<User>(`${this.endpoint}/oven/users/${processId}`);
-    return this.http.get<UserRegistered[]>(`${this.endpoint}/user`);
+  getUsers(role: string): Observable<any> {
+    return this.http.get<UserRegistered[]>(`${this.endpoint}/user/rol/${role}`);
   }
 
   addUser(processId: string, users: UsersCheckers): Observable<string> {

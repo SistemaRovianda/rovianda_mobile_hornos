@@ -1,13 +1,12 @@
 import { Injectable } from "@angular/core";
 import {
-  Resolve,
   ActivatedRouteSnapshot,
+  Resolve,
   RouterStateSnapshot,
 } from "@angular/router";
-import { AppStateInterface } from "../models/storeState.interface";
 import { Store } from "@ngrx/store";
-import { fetchUsers } from "src/app/features/products/store/users/users.actions";
 import { loadProductsFormulation } from "src/app/features/products/store/products-formulation/products-formulation.actions";
+import { AppStateInterface } from "../models/storeState.interface";
 
 @Injectable()
 export class ProductsResolve implements Resolve<boolean> {

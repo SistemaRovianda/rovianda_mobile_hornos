@@ -1,7 +1,7 @@
 @import "../../../../../theme/mixins.scss";
 
 .container {
-  height: 100%;
+  // height: 100%;
   &--all {
     @include breakpoint-size(ms-extra-small) {
       min-height: 800px;
@@ -71,7 +71,7 @@
   }
 
   &__form {
-    height: 100%;
+    height: 80vh;
   }
 
   &__button {

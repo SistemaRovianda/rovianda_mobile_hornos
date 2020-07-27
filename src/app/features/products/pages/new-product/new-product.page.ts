@@ -90,8 +90,6 @@ export class NewProductPageComponent implements OnInit {
   }
 
   position(i: number) {
-    console.log(i);
-
     this.index$.next(i);
   }
 
@@ -100,7 +98,6 @@ export class NewProductPageComponent implements OnInit {
   }
 
   onBackPage(event) {
-    console.log("holi back");
     this.store.dispatch(fromStepperActions.stepperReset());
     this._router.navigate(["product/list"]);
     this.revisionDataForm.form.reset();
