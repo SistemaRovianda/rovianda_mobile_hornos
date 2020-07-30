@@ -1,17 +1,15 @@
-import { Routes, RouterModule } from "@angular/router";
-import { ListProductsModule } from "./pages/list-products/list-products.module";
-import { ListProductsComponent } from "./pages/list-products/list-products.component";
 import { NgModule } from "@angular/core";
-import { NewProductPageComponent } from "./pages/new-product/new-product.page";
+import { RouterModule, Routes } from "@angular/router";
+import { ProductsResolve } from "src/app/shared/resolvers/new-product.resolver";
+import { UsersResolve } from "src/app/shared/resolvers/users.resolver";
+import { ListProductsComponent } from "./pages/list-products/list-products.component";
+import { ListProductsModule } from "./pages/list-products/list-products.module";
 import { NewProductPageModule } from "./pages/new-product/new-product.module";
+import { NewProductPageComponent } from "./pages/new-product/new-product.page";
+import { NewRevisionPageModule } from "./pages/new-revision/new-revision.module";
+import { NewRevisionPage } from "./pages/new-revision/new-revision.page";
 import { ProductReviewListPageModule } from "./pages/product-review-list/product-review-list.module";
 import { ProductReviewListPageComponent } from "./pages/product-review-list/product-review-list.page";
-import { UsersResolve } from "src/app/shared/resolvers/users.resolver";
-import { ProductsResolve } from "src/app/shared/resolvers/new-product.resolver";
-import { NewRevisionPage } from "./pages/new-revision/new-revision.page";
-import { NewRevisionPageModule } from "./pages/new-revision/new-revision.module";
-import { ReportPage } from "./pages/report/report.page";
-import { ReportPageModule } from "./pages/report/report.module";
 
 const routes: Routes = [
   {
@@ -36,10 +34,6 @@ const routes: Routes = [
     },
     component: ProductReviewListPageComponent,
   },
-  {
-    path: ":id/report",
-    component: ReportPage,
-  },
 ];
 
 @NgModule({
@@ -48,7 +42,6 @@ const routes: Routes = [
     ListProductsModule,
     NewProductPageModule,
     NewRevisionPageModule,
-    ReportPageModule,
     ProductReviewListPageModule,
   ],
   providers: [UsersResolve, ProductsResolve],

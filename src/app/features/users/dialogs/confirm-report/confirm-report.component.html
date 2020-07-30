@@ -1,23 +1,17 @@
-<ion-grid>
-  <ion-row class="ion-justify-content-center">
-    <ion-col class="ion-align-self-center">
-      <div>
-        <p>
-          Una vez que genere el reporte este no podrá ser modificado
-        </p>
-      </div>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col class="ion-align-self-center">
-      <ion-button class="accept" (click)="accept()">
-        Generar
-      </ion-button>
-    </ion-col>
-    <ion-col class="ion-align-self-center">
-      <ion-button class="cancel" (click)="cancel()">
-        Cancelar
-      </ion-button>
-    </ion-col>
-  </ion-row>
-</ion-grid>
+<ion-content>
+  <div class="content">
+    <div class="ion-text-center">
+      <ion-label class="label"
+        >Una vez que genere el reporte este no podrá ser modificado.</ion-label
+      >
+    </div>
+
+    <div class="ion-text-end buttons">
+      <ion-label (click)="cancel()"> Cancelar</ion-label>
+
+      <ion-button class="btn" color="primary" size="short" (click)="save()"
+        >Generar</ion-button
+      >
+    </div>
+  </div>
+</ion-content>

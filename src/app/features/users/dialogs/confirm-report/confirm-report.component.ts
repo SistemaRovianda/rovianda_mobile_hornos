@@ -14,13 +14,13 @@ export class ConfirmReportComponent implements OnInit {
 
   ngOnInit() {}
 
-  accept() {
-    this._router.navigate([`/product/${this.id}/report`]);
+  cancel() {
+    console.log("cancel");
     this._modalCtrl.dismiss();
   }
 
-  cancel() {
-    console.log("cancel");
+  save() {
+    this._router.navigate([`/user/print-report/${this.id}`]);
     this._modalCtrl.dismiss();
   }
 }
