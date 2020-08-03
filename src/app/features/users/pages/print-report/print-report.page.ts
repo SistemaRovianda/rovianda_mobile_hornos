@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Reportervice } from "src/app/shared/services/report.service";
 
 @Component({
@@ -12,6 +12,7 @@ export class PrintReportPageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private reportService: Reportervice
   ) {
     this.id = this.route.snapshot.params.id;
@@ -21,5 +22,9 @@ export class PrintReportPageComponent implements OnInit {
 
   printReport() {
     this.reportService.getReport(this.id);
+  }
+
+  onBackPage(evt) {
+    this.router.navigate(["/menu"]);
   }
 }

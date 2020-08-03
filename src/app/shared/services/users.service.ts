@@ -14,6 +14,7 @@ export class UsersService {
   ) {}
 
   getUsers(role: string): Observable<any> {
+    console.log("rol service: ", role);
     return this.http.get<UserRegistered[]>(`${this.endpoint}/user/rol/${role}`);
   }
 

@@ -75,6 +75,7 @@ export class LogginEffects {
         this._authService.getUserData(action.uid).pipe(
           delay(3000),
           switchMap(({ name, lastSurname, firstSurname, rol, job }) => {
+            this._storage.set("uid", action.uid);
             this._storage.set("role", rol);
             this._storage.set(
               "currentUser",

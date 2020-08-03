@@ -41,6 +41,10 @@ export class CreateUserFormComponent implements OnInit {
       this.storage.get("currentUser").then((res) => Promise.resolve(res))
     );
 
+    this.storage.get("uid").then((uid) => {
+      this.form.get("nameElaborated").setValue(uid);
+    });
+
     this.job = from(
       this.storage.get("job").then((res) => Promise.resolve(res))
     );
@@ -63,6 +67,7 @@ export class CreateUserFormComponent implements OnInit {
       nameVerify: nameVerify.userId,
       jobVerify: jobVerify.trim(),
     };
+    console.log("form userS:", user);
 
     this.submit.emit(user);
   }
