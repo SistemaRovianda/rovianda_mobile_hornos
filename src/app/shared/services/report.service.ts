@@ -8,6 +8,8 @@ import {
 import { File } from "@ionic-native/file/ngx";
 import { ToastController } from "@ionic/angular";
 import { API_ENDPOINT_PROVIDER } from "src/app/providers/tokens";
+import { Storage } from "@ionic/storage";
+import { resolve } from "url";
 
 @Injectable({
   providedIn: "root",
@@ -23,6 +25,7 @@ export class Reportervice {
     private transfer: FileTransfer,
     private file: File,
     private toastCtrl: ToastController,
+    private storage: Storage,
     @Inject(API_ENDPOINT_PROVIDER) private endpoint
   ) {
     this.url = `${endpoint}`;
@@ -31,21 +34,29 @@ export class Reportervice {
   getReport(id: string) {
     console.log("pdfService... " + id);
     this.fileTransfer = this.transfer.create();
-    this.fileTransfer
-      .download(
-        `${this.url}/report/formulation/${id}`,
-        this.file.dataDirectory + id + ".pdf"
-      )
-      .then((entry) => {
-        console.log("entry PDF: ", entry.toURL());
-        this.fileOpener
-          .open(entry.toURL(), "application/pdf")
-          .then(() => {
-            this.toastSuccessDownload();
-            console.log("File is opened");
-          })
-          .catch((error) => console.log("Error opening file", error));
-      });
+    this.storage.get("token").then((token) => {
+      this.fileTransfer
+        .download(
+          `${this.url}/report/formulation/${id}`,
+          this.file.dataDirectory + id + ".pdf",
+          false,
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        )
+        .then((entry) => {
+          console.log("entry PDF: ", entry.toURL());
+          this.fileOpener
+            .open(entry.toURL(), "application/pdf")
+            .then(() => {
+              this.toastSuccessDownload();
+              console.log("File is opened");
+            })
+            .catch((error) => console.log("Error opening file", error));
+        });
+    });
   }
 
   async toastSuccessDownload() {
