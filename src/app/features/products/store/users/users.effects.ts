@@ -9,7 +9,7 @@ import {
   registerUsersError,
 } from "./users.actions";
 import { exhaustMap, switchMap, catchError } from "rxjs/operators";
-import { of } from "rxjs";
+import { of, forkJoin } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -24,8 +24,13 @@ export class UsersEffects {
     this._actions$.pipe(
       ofType(fetchUsers),
       exhaustMap((action) =>
-        this._usersService.getUsers(action.role).pipe(
-          switchMap((users) => [fetchUsersSuccess({ users: users })]),
+        forkJoin(
+          this._usersService.getUsers("quality"),
+          this._usersService.getUsers("process")
+        ).pipe(
+          switchMap(([userQuality, usersProcess]) => [
+            fetchUsersSuccess({ users: [...userQuality, ...usersProcess] }),
+          ]),
           catchError((error) => of(fetchUsersError(error)))
         )
       )

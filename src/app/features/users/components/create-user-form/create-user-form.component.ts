@@ -26,6 +26,8 @@ export class CreateUserFormComponent implements OnInit {
 
   userVerifyJob: string;
 
+  userCheckJob: string;
+
   constructor(
     private fb: FormBuilder,
     private storage: Storage,
@@ -36,14 +38,19 @@ export class CreateUserFormComponent implements OnInit {
       jobElaborated: ["", [Validators.required]],
       nameVerify: ["", [Validators.required]],
       jobVerify: ["", [Validators.required, whitespaceValidator]],
+      nameCheck: ["", [Validators.required]],
+      jobCheck: ["", Validators.required]
     });
     this.nameElaborated = from(
-      this.storage.get("currentUser").then((res) => Promise.resolve(res))
+      this.storage.get("currentUser").then((res) => { 
+        this.form.get('nameElaborated').setValue(res);
+        return Promise.resolve(res)})
+      
     );
 
-    this.storage.get("uid").then((uid) => {
-      this.form.get("nameElaborated").setValue(uid);
-    });
+    // this.storage.get("uid").then((uid) => {
+      // this.form.get("nameElaborated").setValue(uid);
+    // });
 
     this.job = from(
       this.storage.get("job").then((res) => Promise.resolve(res))
@@ -60,12 +67,16 @@ export class CreateUserFormComponent implements OnInit {
       jobElaborated,
       nameVerify,
       jobVerify,
+      nameCheck,
+      jobCheck
     } = this.form.value;
     const user = {
       nameElaborated: nameElaborated.trim(),
       jobElaborated: jobElaborated.trim(),
-      nameVerify: nameVerify.userId,
+      nameVerify: nameVerify.fullName,
       jobVerify: jobVerify.trim(),
+      nameCheck: nameCheck.fullName,
+      jobCheck: jobCheck.trim()
     };
     console.log("form userS:", user);
 
@@ -75,5 +86,9 @@ export class CreateUserFormComponent implements OnInit {
   selectNameVerify(evt) {
     console.log("seleccino: ", evt.detail.value.job);
     this.userVerifyJob = evt.detail.value.job;
+  }
+
+  selectNameCheck(evt){
+    this.userCheckJob = evt.detail.value.job
   }
 }

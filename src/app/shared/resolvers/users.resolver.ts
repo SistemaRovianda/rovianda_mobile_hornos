@@ -20,8 +20,7 @@ export class UsersResolve implements Resolve<boolean> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean | import("rxjs").Observable<boolean> | Promise<boolean> {
-    this._store.dispatch(fetchUsers({ role: "quality" }));
-
+    this._store.dispatch(fetchUsers({}));
     return true;
   }
 }
