@@ -89,6 +89,7 @@ export class CreateUserFormComponent implements OnInit {
   }
 
   selectNameCheck(evt){
+    console.log("nameCheck: ", evt);
     this.userCheckJob = evt.detail.value.job
   }
 }

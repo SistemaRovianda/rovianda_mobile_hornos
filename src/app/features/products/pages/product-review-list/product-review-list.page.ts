@@ -7,11 +7,6 @@ import * as fromDetailActions from "../../store/product-review-list/product-revi
 import * as fromDetailSelector from "../../store/product-review-list/product-review-list.selector";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ModalController } from "@ionic/angular";
-import { ObservationsDialogComponent } from "../../dialogs/observations-dialog/observations-dialog.component";
-import { usersSelector } from "../../store/users/users.selectors";
-import { MessageDialogComponent } from "../../dialogs/message-dialog/message-dialog.component";
-import { clearUsers } from "../../store/users/users.actions";
-import { User } from "firebase";
 import { UsersCheckers } from "src/app/shared/models/user.interface";
 import { SELECT_USERS_CHECKED } from "../../store/usersChecked/users-checked.selectors";
 
