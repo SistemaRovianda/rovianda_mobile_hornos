@@ -26,6 +26,7 @@ export class UsersService {
   }
 
   getUsersChecked(processId: string): Observable<UsersCheckers> {
+    console.log("userCheckedService: ", processId);
     return this.http.get<UsersCheckers>(
       `${this.endpoint}/oven/users/${processId}`
     );

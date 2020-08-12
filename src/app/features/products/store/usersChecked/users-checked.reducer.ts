@@ -1,6 +1,10 @@
 import { UsersCheckers } from "src/app/shared/models/user.interface";
 import { createReducer, on, Action } from "@ngrx/store";
-import { fetchUsersChecked } from "./users-checked.actions";
+import {
+  fetchUsersChecked,
+  fetchUsersCheckedSuccess,
+  fetchUsersCheckedFailured,
+} from "./users-checked.actions";
 
 export interface UsersCheckedState {
   usersChecked: UsersCheckers;
@@ -19,6 +23,16 @@ const _usersCheckedReducer = createReducer<UsersCheckedState>(
   on(fetchUsersChecked, (state) => ({
     ...state,
     loading: true,
+  })),
+  on(fetchUsersCheckedSuccess, (state, { usersChecked }) => ({
+    ...state,
+    loading: false,
+    usersChecked,
+  })),
+  on(fetchUsersCheckedFailured, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error,
   }))
 );
 

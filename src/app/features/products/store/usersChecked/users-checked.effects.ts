@@ -6,7 +6,7 @@ import {
   fetchUsersCheckedSuccess,
   fetchUsersCheckedFailured,
 } from "./users-checked.actions";
-import { exhaustMap, switchMap, catchError } from "rxjs/operators";
+import { exhaustMap, switchMap, catchError, tap } from "rxjs/operators";
 import { UsersCheckers } from "src/app/shared/models/user.interface";
 import { of } from "rxjs";
 
@@ -19,6 +19,10 @@ export class UsersCheckedEffects {
   fetchUsersCheckedEffect$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fetchUsersChecked),
+      tap((action) => {
+        console.clear();
+        console.log("Revisores del proceso: ", action.processId);
+      }),
       exhaustMap((action) =>
         this.usersService.getUsersChecked(action.processId).pipe(
           switchMap((usersChecked: UsersCheckers) => [

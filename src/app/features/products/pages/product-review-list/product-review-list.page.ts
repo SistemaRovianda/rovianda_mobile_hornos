@@ -39,6 +39,9 @@ export class ProductReviewListPageComponent implements OnInit {
     });
 
     this.users$ = this.store.select(SELECT_USERS_CHECKED);
+    this.users$.subscribe((res) => {
+      console.log("users checked: ", res);
+    });
   }
 
   get id(): number {
@@ -46,7 +49,10 @@ export class ProductReviewListPageComponent implements OnInit {
   }
 
   endup() {
-    this.router.navigate(["/product/list"]);
+    // this.router.navigate(["/product/list"]);
+    this.store.dispatch(
+      fromDetailActions.closeOvenProduct({ productId: this.id.toString() })
+    );
   }
 
   addUsers() {
