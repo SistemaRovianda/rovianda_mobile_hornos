@@ -36,9 +36,13 @@ export class GeneralDataFormComponent implements OnInit {
       pcc: ["", [Validators.required, whitespaceValidator]],
       productId: ["", [Validators.required, whitespaceValidator]],
       date: [
-        { value: moment(new Date()).format("DD/MM/YYYY"), disabled: true },
+        { value: moment(new Date()).format("YYYY-MM-DD"), disabled: true },
       ],
       oven: ["", [Validators.required, whitespaceValidator]],
+      assignmentLot: fb.group({
+        newLotId: ["", [Validators.required]],
+        dateEntry: ["", [Validators.required]],
+      }),
     });
   }
 
@@ -53,8 +57,15 @@ export class GeneralDataFormComponent implements OnInit {
       newLote: newLote,
       pcc: pcc.trim(),
       productId: productId.productRoviandaId,
-      date: moment(new Date()).format("DD/MM/YYYY"),
+      date: moment(new Date()).format("YYYY-MM-DD"),
       oven: parseInt(oven),
+      assignmentLot: {
+        newLotId: this.form.get("assignmentLot").get("newLotId").value,
+        dateEntry: this.form
+          .get("assignmentLot")
+          .get("dateEntry")
+          .value.split("T")[0],
+      },
     };
 
     this.submit.emit(payload);
@@ -63,5 +74,13 @@ export class GeneralDataFormComponent implements OnInit {
   onChange(event) {
     console.log("Producto seleccionado: ", event.detail.value);
     this.lotesByProductFormulation = event.detail.value.lots;
+  }
+
+  get newLotId() {
+    return this.form.get("assignmentLot").get("newLotId");
+  }
+
+  get dateEntry() {
+    return this.form.get("assignmentLot").get("dateEntry");
   }
 }

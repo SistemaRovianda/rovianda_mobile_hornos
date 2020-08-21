@@ -21,6 +21,9 @@ import { HttpClientModule } from "@angular/common/http";
 import { effects } from "./shared/store/effects/index.effects";
 import { MessageDialogModule } from "./features/products/dialogs/message-dialog/message-dialog.module";
 import { IonicStorageModule } from "@ionic/storage";
+import { FileTransferObject, FileTransfer } from '@ionic-native/file-transfer/ngx';
+import { File } from '@ionic-native/file/ngx';
+import { FileOpener } from '@ionic-native/file-opener/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -51,6 +54,10 @@ import { IonicStorageModule } from "@ionic/storage";
     IsAuthGuard,
     StatusBar,
     SplashScreen,
+    FileTransfer,
+    FileTransferObject,
+    FileOpener,
+    File,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     AppProvidersModule,
   ],

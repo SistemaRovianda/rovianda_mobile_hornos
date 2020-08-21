@@ -36,7 +36,7 @@ $color-text-secondary: #575552;
     }
 
     @include breakpoint-size(ms-small) {
-      height: 30%;
+      height: 20%;
     }
 
     @include breakpoint-size(ms-medium) {
@@ -63,6 +63,15 @@ $color-text-secondary: #575552;
         height: 12%;
       }
     }
+
+    &--register-lots {
+      height: 80%;
+    }
+  }
+
+  &__subtitle--lots {
+    margin: 0;
+    height: 20%;
   }
 
   &__item {

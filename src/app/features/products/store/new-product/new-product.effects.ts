@@ -2,11 +2,12 @@ import { Injectable } from "@angular/core";
 import { ModalController } from "@ionic/angular";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { of } from "rxjs";
-import { catchError, exhaustMap, tap } from "rxjs/operators";
+import { catchError, exhaustMap, tap, switchMap } from "rxjs/operators";
 import { ProductService } from "src/app/shared/services/product.service";
 import { ToastService } from "src/app/shared/services/toast.service";
 import { stepperReset } from "src/app/shared/store/stepper/stepper.actions";
 import * as fromActions from "./new-product.actions";
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: "root",
@@ -16,7 +17,8 @@ export class NewProductEffects {
     private actions$: Actions,
     private productsService: ProductService,
     public modalController: ModalController,
-    public toast: ToastService
+    public toast: ToastService,
+    private router: Router
   ) {}
 
   product$ = createEffect(() =>
@@ -24,16 +26,31 @@ export class NewProductEffects {
       ofType(fromActions.newProduct),
       exhaustMap((action) =>
         this.productsService.newProduct(action.product).pipe(
-          tap(() => {
-            fromActions.newProductSuccess();
+          switchMap((_) => {
             stepperReset();
             this.toast.presentToastSuccess();
+            return [fromActions.newProductSuccess()]
           }),
-          catchError((error) => this.errorHandler(error))
+          catchError((error) => {
+            this.errorHandler(error)
+            return [];
+          })
         )
       )
     )
   );
+
+  success$ = createEffect(() => 
+          this.actions$.pipe(
+            ofType(fromActions.newProductSuccess),
+            tap( _ => {
+              this.router.navigate(['/product/list'])
+            })
+          ),
+          {
+            dispatch: false
+          }
+  )
 
   errorHandler(error: any) {
     this.toast.presentToastError();

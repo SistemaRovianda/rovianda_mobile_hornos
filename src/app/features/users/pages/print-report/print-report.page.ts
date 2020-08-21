@@ -25,6 +25,6 @@ export class PrintReportPageComponent implements OnInit {
   }
 
   onBackPage(evt) {
-    this.router.navigate(["/menu"]);
+    this.router.navigate(["/product/list"]);
   }
 }

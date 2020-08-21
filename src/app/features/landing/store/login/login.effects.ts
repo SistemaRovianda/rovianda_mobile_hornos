@@ -5,7 +5,7 @@ import { from, of } from "rxjs";
 import { catchError, delay, exhaustMap, switchMap, tap } from "rxjs/operators";
 import * as fromLoginActions from "src/app/features/landing/store/login/login.action";
 import * as fromAuthActions from "src/app/features/landing/store/authentication/authentication.action";
-import { AuthService } from "src/app/shared/Services/auth.service";
+import { AuthService } from "src/app/shared/services/auth.service";
 import { Platform } from "@ionic/angular";
 import { Storage } from "@ionic/storage";
 

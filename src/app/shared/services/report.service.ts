@@ -1,15 +1,14 @@
-import { HttpClient } from "@angular/common/http";
+
 import { Inject, Injectable } from "@angular/core";
 import { FileOpener } from "@ionic-native/file-opener/ngx";
 import {
-  FileTransfer,
-  FileTransferObject,
+  FileTransfer
 } from "@ionic-native/file-transfer/ngx";
 import { File } from "@ionic-native/file/ngx";
 import { ToastController } from "@ionic/angular";
-import { API_ENDPOINT_PROVIDER } from "src/app/providers/tokens";
+import { API_ENDPOINT_PROVIDER } from "../../providers/tokens";
 import { Storage } from "@ionic/storage";
-import { resolve } from "url";
+import { AuthService } from "./auth.service";
 
 @Injectable({
   providedIn: "root",
@@ -17,15 +16,15 @@ import { resolve } from "url";
 export class Reportervice {
   url: string;
 
-  fileTransfer: FileTransferObject;
+  // fileTransfer: FileTransferObject;
 
   constructor(
-    private http: HttpClient,
     private fileOpener: FileOpener,
-    private transfer: FileTransfer,
+    private fileTransfer: FileTransfer,
     private file: File,
     private toastCtrl: ToastController,
     private storage: Storage,
+    private authService: AuthService,
     @Inject(API_ENDPOINT_PROVIDER) private endpoint
   ) {
     this.url = `${endpoint}`;
@@ -33,31 +32,71 @@ export class Reportervice {
 
   getReport(id: string) {
     console.log("pdfService... " + id);
-    this.fileTransfer = this.transfer.create();
+    let fileTransfer = this.fileTransfer.create();
     this.storage.get("token").then((token) => {
-      this.fileTransfer
-        .download(
-          `${this.url}/report/formulation/${id}`,
-          this.file.dataDirectory + id + ".pdf",
-          false,
-          {
-            headers: {
-              Authorization: token,
-            },
-          }
-        )
-        .then((entry) => {
-          console.log("entry PDF: ", entry.toURL());
-          this.fileOpener
-            .open(entry.toURL(), "application/pdf")
-            .then(() => {
-              this.toastSuccessDownload();
-              console.log("File is opened");
-            })
-            .catch((error) => console.log("Error opening file", error));
-        });
+      // this.storage.get("uid").then((uid) => {
+        console.log("token report: ", token)
+        console.log("uid: ", this.authService.getUID())
+        fileTransfer
+          .download(
+            `${this.endpoint}/report/oven/${id}?uid=${this.authService.getUID()}`,
+            this.file.dataDirectory + id + ".pdf",
+            false,
+            {
+              headers: {
+                Authorization: token,
+              },
+            }
+          )
+          .then((entry) => {
+            console.log("entry PDF: ", entry.toURL());
+            this.fileOpener
+              .open(entry.toURL(), "application/pdf")
+              .then(() => {
+                this.toastSuccessDownload();
+                console.log("File is opened");
+              })
+              .catch((error) => console.log("Error opening file", error));
+          });
+      // })
+      
     });
   }
+
+  // getReport(id: string): Observable<any> {
+  //   const transfer = this.fileTransfer.create();
+
+  //   let token;
+  //   let uid;
+
+  //   this.storage.get('token').then((res) => (token = res));
+  //   this.storage.get('uid').then((res) => uid = res)
+
+  //   console.log("token: ", token, "uid: ", uid);
+
+  //   return from(
+  //     transfer
+  //       .download(
+  //         `${
+  //           this.endpoint
+  //         }/report/oven/${id}?uid=${uid}`,
+  //         `${this.file.dataDirectory}report-${id}.pdf`,
+  //         false,
+  //         {
+  //           headers: {
+  //             Authorization: localStorage.getItem('token'),
+  //           },
+  //         }
+  //       )
+  //       .then((entry) => {
+  //         let url = entry.toURL();
+  //         this.fileOpener.open(url, 'application/pdf');
+  //         return Promise.resolve(true);
+  //       })
+  //       .catch((error) => console.error('Error opening file ', error))
+  //   ).pipe(map((res) => res));
+  // }
+
 
   async toastSuccessDownload() {
     const toast = await this.toastCtrl.create({
@@ -65,6 +104,7 @@ export class Reportervice {
       duration: 2000,
       color: "success",
     });
-    toast.present();
+
+    return await toast.present();
   }
 }

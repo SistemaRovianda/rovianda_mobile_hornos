@@ -108,5 +108,46 @@
         </ion-item>
       </ion-col>
     </ion-row>
+    <ion-row class="form form__row">
+      <ion-col class="form form__column form__column--interior" size="12">
+        <h1 class="form form__subtitle--lots">
+          Asignacion de lote
+        </h1>
+        <ion-row class="form form__row form__row--register-lots" formGroupName="assignmentLot">
+          <ion-col class="form form__column" size="6">
+            <ion-item class="form form__item">
+              <ion-label class="form form__label" position="floating">Lote</ion-label>
+              <ion-input class="form form__input" formControlName="newLotId" type="text" placeholder="######">
+              </ion-input>
+            </ion-item>
+            <div class="form form__message-error">
+              <ion-label class="form form__label form__label--error"
+                *ngIf="newLotId.invalid && (newLotId.dirty || newLotId.touched)">
+                Campo requerido.-
+              </ion-label>
+              <ion-label class="form form__label form__label--error"
+                *ngIf="newLotId.touched && newLotId.errors?.whitespace">
+                No se aceptan espacios en blanco
+              </ion-label>
+            </div>
+          </ion-col>
+          <ion-col class="form form__column" size="6">
+            <ion-item class="form form__item">
+              <ion-label class="form form__label" position="floating">Ingreso*</ion-label>
+              <ion-datetime class="form form__datetime" formControlName="dateEntry" placeholder="dd/mm/yyyy"
+                displayFormat="DD/MM/YYYY">
+              </ion-datetime>
+            </ion-item>
+            <div class="form form__message-error">
+              <ion-label class="form form__label form__label--error" *ngIf="
+                  dateEntry.invalid && (dateEntry.dirty || dateEntry.touched)
+                ">
+                Este campo es requerido.
+              </ion-label>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </form>

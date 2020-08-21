@@ -4,7 +4,7 @@ import { Platform } from "@ionic/angular";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import * as splash from "@capacitor/core";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
-import { AuthService } from "./shared/Services/auth.service";
+import { AuthService } from "./shared/services/auth.service";
 import { mergeMap } from "rxjs/operators";
 import { Router } from "@angular/router";
 

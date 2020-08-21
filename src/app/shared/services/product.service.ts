@@ -21,7 +21,7 @@ export class ProductService {
   }
 
   getProductsOven(): Observable<ProductOven[]> {
-    return this.http.get<ProductOven[]>(`${this.url}/products`);
+    return this.http.get<ProductOven[]>(`${this.url}/products?status=OPENED`);
   }
 
   getProductsFormulation(): Observable<ProductFormulation[]> {

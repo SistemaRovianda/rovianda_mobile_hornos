@@ -20,6 +20,7 @@ export class ConfirmReportComponent implements OnInit {
   }
 
   save() {
+    console.log("id de reporte: ", this.id);
     this._router.navigate([`/user/print-report/${this.id}`]);
     this._modalCtrl.dismiss();
   }
