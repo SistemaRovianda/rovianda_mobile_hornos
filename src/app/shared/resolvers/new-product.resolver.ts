@@ -5,8 +5,9 @@ import {
   RouterStateSnapshot,
 } from "@angular/router";
 import { Store } from "@ngrx/store";
-import { loadProductsFormulation } from "src/app/features/products/store/products-formulation/products-formulation.actions";
+
 import { AppStateInterface } from "../models/storeState.interface";
+import { loadProductsProcess } from 'src/app/features/products/store/products-process/products-process.actions';
 
 @Injectable()
 export class ProductsResolve implements Resolve<boolean> {
@@ -16,7 +17,7 @@ export class ProductsResolve implements Resolve<boolean> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean | import("rxjs").Observable<boolean> | Promise<boolean> {
-    this._store.dispatch(loadProductsFormulation());
+    this._store.dispatch(loadProductsProcess());
     return true;
   }
 }

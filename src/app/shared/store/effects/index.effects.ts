@@ -4,8 +4,8 @@ import { NewProductEffects } from "src/app/features/products/store/new-product/n
 import { DetailReviewListEffects } from "src/app/features/products/store/product-review-list/product-review-list.effects";
 import { UsersEffects } from "src/app/features/products/store/users/users.effects";
 import { RevisionEffects } from "src/app/features/products/store/revision/revision.effects";
-import { ProductsFormulationEffects } from "../../../features/products/store/products-formulation/products-formulation.effects";
 import { UsersCheckedEffects } from "src/app/features/products/store/usersChecked/users-checked.effects";
+import { ProductsProcessEffects } from 'src/app/features/products/store/products-process/products-process.effects';
 
 export const effects = [
   LogginEffects,
@@ -15,5 +15,5 @@ export const effects = [
   UsersEffects,
   RevisionEffects,
   UsersCheckedEffects,
-  ProductsFormulationEffects,
+  ProductsProcessEffects
 ];

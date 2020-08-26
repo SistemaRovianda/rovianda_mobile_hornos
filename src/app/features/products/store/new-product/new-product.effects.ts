@@ -8,6 +8,7 @@ import { ToastService } from "src/app/shared/services/toast.service";
 import { stepperReset } from "src/app/shared/store/stepper/stepper.actions";
 import * as fromActions from "./new-product.actions";
 import { Router } from '@angular/router';
+import { fetchAllProducts } from '../list-products/list-products.actions';
 
 @Injectable({
   providedIn: "root",
@@ -29,7 +30,7 @@ export class NewProductEffects {
           switchMap((_) => {
             stepperReset();
             this.toast.presentToastSuccess();
-            return [fromActions.newProductSuccess()]
+            return [fromActions.newProductSuccess(),fetchAllProducts()]
           }),
           catchError((error) => {
             this.errorHandler(error)

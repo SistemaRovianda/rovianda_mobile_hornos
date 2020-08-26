@@ -5,7 +5,7 @@ import { Observable } from "rxjs";
 import { ProductFormulation } from "src/app/shared/models/product.interface";
 import { AppStateInterface } from "src/app/shared/models/storeState.interface";
 import { Store } from "@ngrx/store";
-import { productsFormulationSelect } from "../../store/products-formulation/products-formulation.selectors";
+
 
 @Component({
   selector: "revision-data-form",

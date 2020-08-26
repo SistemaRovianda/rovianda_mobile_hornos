@@ -2,9 +2,9 @@ import { AppStateInterface } from "src/app/shared/models/storeState.interface";
 import { createSelector } from "@ngrx/store";
 
 const PRODUCTS_FORMULATION_STATE = (state: AppStateInterface) =>
-  state.productsFormulation;
+  state.productsProcess;
 
-export const productsFormulationSelect = createSelector(
+export const productsProcessSelect = createSelector(
   PRODUCTS_FORMULATION_STATE,
-  (state) => state.productsFormulation
+  (state) => state.productsProcess
 );

@@ -6,7 +6,7 @@ import { catchError, delay, exhaustMap, switchMap, tap } from "rxjs/operators";
 import * as fromLoginActions from "src/app/features/landing/store/login/login.action";
 import * as fromAuthActions from "src/app/features/landing/store/authentication/authentication.action";
 import { AuthService } from "src/app/shared/services/auth.service";
-import { Platform } from "@ionic/angular";
+import { Platform, NavController } from "@ionic/angular";
 import { Storage } from "@ionic/storage";
 
 @Injectable()
@@ -14,7 +14,7 @@ export class LogginEffects {
   constructor(
     private action$: Actions,
     private _authService: AuthService,
-    private _router: Router,
+    private _router: NavController,
     private _storage: Storage,
     private _ptl: Platform
   ) {}
@@ -108,7 +108,7 @@ export class LogginEffects {
     this.action$.pipe(
       ofType(fromLoginActions.signInSuccess),
       exhaustMap((action) =>
-        from(this._router.navigate(["/product/list"])).pipe(
+        from(this._router.navigateRoot(["/product/list"])).pipe(
           switchMap((result) =>
             result
               ? [fromLoginActions.finishLoad()]

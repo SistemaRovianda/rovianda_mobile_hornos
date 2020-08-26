@@ -7,6 +7,7 @@ import * as fromActions from "./product-review-list.actions";
 import { RevisionService } from "src/app/shared/services/revision.service";
 import { ToastService } from "src/app/shared/services/toast.service";
 import { Router } from "@angular/router";
+import { fetchAllProducts } from '../list-products/list-products.actions';
 
 @Injectable({
   providedIn: "root",
@@ -41,6 +42,7 @@ export class DetailReviewListEffects {
             tap((_) => {
               this.router.navigate(["/product/list"]);
               this.toastService.presentToastSuccess();
+              fetchAllProducts()
             }),
             catchError((error) => this.toastService.presentToastError())
           )

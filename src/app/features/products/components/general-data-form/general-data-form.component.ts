@@ -2,11 +2,12 @@ import { Component, EventEmitter, OnInit, Output, Input } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import * as moment from "moment";
 import { whitespaceValidator } from "src/app/shared/validators/whitespace.validator";
-import { ProductFormulation } from "src/app/shared/models/product.interface";
+import {  ProductProcess } from "src/app/shared/models/product.interface";
 import { Observable } from "rxjs";
 import { Store } from "@ngrx/store";
 import { AppStateInterface } from "src/app/shared/models/storeState.interface";
-import { productsFormulationSelect } from "../../store/products-formulation/products-formulation.selectors";
+import { productsProcessSelect } from '../../store/products-process/products-process.selectors';
+
 
 @Component({
   selector: "general-data-form",
@@ -22,9 +23,9 @@ export class GeneralDataFormComponent implements OnInit {
   @Output("onSubmit") submit = new EventEmitter();
   form: FormGroup;
 
-  productsFormulation$: Observable<ProductFormulation[]>;
+  productsProcess$: ProductProcess[]=[];
 
-  lotesByProductFormulation: String[];
+  lotesByProductProcess: String[];
 
   constructor(
     private fb: FormBuilder,
@@ -47,16 +48,28 @@ export class GeneralDataFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.productsFormulation$ = this.store.select(productsFormulationSelect);
+    this.store.select(productsProcessSelect).subscribe((items)=>{
+      let productsProcessTemp = items.map((x)=>{
+      
+        let lots=x.lots.map((lot)=>{
+          console.log(JSON.stringify(lot));
+          
+          let date = new Date(lot.dateEndedProcess);
+          return {...lot,dateEndedProcess:`${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()} ${(date.getHours()+5)>12?(date.getHours()-7):date.getHours()+5}:${date.getMinutes()}`};
+        })
+        return {...x,lots};
+      });
+      this.productsProcess$ = productsProcessTemp;
+    });
   }
 
   onSubmit() {
     const { estimatedTime, newLote, pcc, productId, oven } = this.form.value;
     const payload = {
       estimatedTime: estimatedTime.trim(),
-      newLote: newLote,
+      newLote: newLote.recordId,
       pcc: pcc.trim(),
-      productId: productId.productRoviandaId,
+      productId: productId.productId,
       date: moment(new Date()).format("YYYY-MM-DD"),
       oven: parseInt(oven),
       assignmentLot: {
@@ -73,7 +86,7 @@ export class GeneralDataFormComponent implements OnInit {
 
   onChange(event) {
     console.log("Producto seleccionado: ", event.detail.value);
-    this.lotesByProductFormulation = event.detail.value.lots;
+    this.lotesByProductProcess = event.detail.value.lots;
   }
 
   get newLotId() {

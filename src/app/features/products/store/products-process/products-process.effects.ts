@@ -2,10 +2,10 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { ProductService } from "src/app/shared/services/product.service";
 import {
-  loadProductsFormulation,
-  loadProductsFormulationSuccess,
-  loadProductsFormulationError,
-} from "./products-formulation.actions";
+  loadProductsProcess,
+  loadProductsProcessSuccess,
+  loadProductsProcessError,
+} from "./products-process.actions";
 import { exhaustMap, switchMap, catchError } from "rxjs/operators";
 import { of } from "rxjs";
 import { ToastService } from "src/app/shared/services/toast.service";
@@ -13,25 +13,25 @@ import { ToastService } from "src/app/shared/services/toast.service";
 @Injectable({
   providedIn: "root",
 })
-export class ProductsFormulationEffects {
+export class ProductsProcessEffects {
   constructor(
     private _actions$: Actions,
     private productsService: ProductService,
     private toastService: ToastService
   ) {}
 
-  loadProductsFormulation$ = createEffect(() =>
+  loadProductsProcess$ = createEffect(() =>
     this._actions$.pipe(
-      ofType(loadProductsFormulation),
+      ofType(loadProductsProcess),
       exhaustMap((action) =>
-        this.productsService.getProductsFormulation().pipe(
+        this.productsService.getProductsProcess().pipe(
           switchMap((products) => {
             return [
-              loadProductsFormulationSuccess({ productsFormulation: products }),
+              loadProductsProcessSuccess({ productsProcess: products }),
             ];
           }),
           catchError((error) => {
-            return of(loadProductsFormulationError(error));
+            return of(loadProductsProcessError(error));
           })
         )
       )

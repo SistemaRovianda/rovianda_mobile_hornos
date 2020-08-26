@@ -8,6 +8,7 @@ import {
   ProductFormulation,
   ProductOven,
   ProductOvenDetail,
+  ProductProcess,
 } from "../models/product.interface";
 
 @Injectable({
@@ -24,8 +25,8 @@ export class ProductService {
     return this.http.get<ProductOven[]>(`${this.url}/products?status=OPENED`);
   }
 
-  getProductsFormulation(): Observable<ProductFormulation[]> {
-    return this.http.get<any[]>(`${environment.basePath}/formulation/products`);
+  getProductsProcess(): Observable<ProductProcess[]> {
+    return this.http.get<any[]>(`${environment.basePath}/process-availables/products`);
   }
 
   newProduct(payload: NewProduct): Observable<any> {

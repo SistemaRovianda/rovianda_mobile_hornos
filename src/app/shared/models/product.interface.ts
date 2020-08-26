@@ -4,6 +4,18 @@ export interface ProductFormulation {
   lots: string[];
 }
 
+export interface ProductProcess{
+  productId: number;
+  productName: string;
+  lots: ProcessLots[];
+}
+
+export interface ProcessLots{
+  dateEndedProcess:string;
+  lotId:string;
+  recordId:number;
+}
+
 export interface ProductOven {
   ovenProductId: number;
   pcc: number;

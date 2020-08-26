@@ -30,8 +30,8 @@
           <ion-label class="form form__label" position="stacked">Producto*</ion-label>
           <ion-select class="form form__select" interface="action-sheet" placeholder="Seleccione un producto"
             formControlName="productId" (ionChange)="onChange($event)">
-            <ion-select-option class="form form__select-option" *ngFor="let pf of productsFormulation$ | async"
-              [value]="pf">{{ pf.productRovianda }}</ion-select-option>
+            <ion-select-option class="form form__select-option" *ngFor="let pf of productsProcess$"
+              [value]="pf">{{ pf.productName }}</ion-select-option>
           </ion-select>
         </ion-item>
 
@@ -75,8 +75,8 @@
           <ion-label class="form form__label" position="stacked">Lote*</ion-label>
           <ion-select class="form form__select" formControlName="newLote" interface="action-sheet"
             placeholder="Seleccione Lote">
-            <ion-select-option class="form form__select-option" *ngFor="let l of lotesByProductFormulation" [value]="l">
-              {{ l }}</ion-select-option>
+            <ion-select-option class="form form__select-option" *ngFor="let l of lotesByProductProcess" [value]="l">
+              {{ l.lotId }}-{{l.dateEndedProcess }}</ion-select-option>
           </ion-select>
         </ion-item>
 
