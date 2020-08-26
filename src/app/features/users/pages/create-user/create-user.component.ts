@@ -6,6 +6,7 @@ import { ModalController } from "@ionic/angular";
 import { ConfirmAddUserComponent } from "../../dialogs/confirm-add-user/confirm-add-user.component";
 import { CreateUserFormComponent } from "../../components/create-user-form/create-user-form.component";
 import { ConfirmReportComponent } from "../../dialogs/confirm-report/confirm-report.component";
+import { getUserOfOven } from 'src/app/features/products/store/users/users.actions';
 
 @Component({
   selector: "app-create-user",
@@ -59,7 +60,11 @@ export class CreateUserComponent implements OnInit {
         users: users,
       },
     });
-
+    modal.onDidDismiss().then(()=>{
+      this._store.dispatch(getUserOfOven({ovenId:+this.route.snapshot.paramMap.get("id")}))
+      this.onBack();
+      }
+    );
     return await modal.present();
   }
 

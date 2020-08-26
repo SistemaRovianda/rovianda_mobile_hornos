@@ -65,31 +65,31 @@ export class CreateUserFormComponent implements OnInit {
       this.users = users;
     });
   }
-
+  
   ngOnInit() {
     this.store.dispatch(getUserOfOven({ovenId:this.ovenId}));
     this.store.pipe(select(usersOfOvenSelector)).subscribe((value)=>{
-      this.usersOfOvenStore = value;
-      if(value!=null && value.jobElaborated!=""){
-        this.users = [
-          {
-            fullName: value.nameVerify,
-            job: value.jobVerify,
-            rol: value.jobVerify,
-            userId:"123"
-          },
-          {
-            fullName: value.checkName,
-            job: value.checkJob,
-            rol: value.checkJob,
-            userId:"124"
-          }
-        ];
+      if(value!=null && value.jobElaborated!=undefined && value.jobElaborated!=""){
+        this.usersOfOvenStore = value;
+        
+        console.log("Users oven",value);
+        console.log("Modificando array default");
+        
+        this.form.get("nameVerify").setValue(value.nameVerify);
+      this.form.get("jobVerify").setValue(value.jobVerify);
+      this.form.get("nameCheck").setValue(value.checkName);
+      this.form.get("jobCheck").setValue(value.checkJob);
+     
+      }else{
+        this.usersOfOvenStore=null;
       }
+      console.log("Oven",this.usersOfOvenStore);
+      console.log("USUARIOS",this.users);
     });
   }
 
   onSubmit() {
+    if(this.usersOfOvenStore==null){
     const {
       nameElaborated,
       jobElaborated,
@@ -107,8 +107,9 @@ export class CreateUserFormComponent implements OnInit {
       jobCheck: jobCheck.trim()
     };
     console.log("form userS:", user);
-
+    
     this.submit.emit(user);
+  }
   }
 
   selectNameVerify(evt) {
