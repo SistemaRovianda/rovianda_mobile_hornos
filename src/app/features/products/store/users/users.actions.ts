@@ -3,6 +3,7 @@ import {
   UserRegistered,
   UsersCheckers,
 } from "src/app/shared/models/user.interface";
+import { userOfOven } from './users.reducer';
 
 const FETCH_USERS = "[USERS] Fetch all users";
 
@@ -46,3 +47,5 @@ export const registerUsersError = createAction(
 );
 
 export const clearUsers = createAction(CLEAR_USERS);
+export const getUserOfOven = createAction("[OVEN],getting users of oven",props<{ovenId:number}>());
+export const setUserOfOven = createAction("[OVEN],getting users of oven",props<{users:userOfOven}>());

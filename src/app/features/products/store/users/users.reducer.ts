@@ -5,6 +5,7 @@ import {
   fetchUsersSuccess,
   fetchUsers,
   clearUsers,
+  setUserOfOven,
 } from "./users.actions";
 import { UserRegistered } from "src/app/shared/models/user.interface";
 
@@ -49,3 +50,15 @@ const _usersReducer = createReducer<UsersState>(
 export function usersReducer(state: UsersState, action: Action) {
   return _usersReducer(state, action);
 }
+
+export interface userOfOven{
+  nameElaborated: string;
+  jobElaborated: string;
+  nameVerify: string;
+  jobVerify: string;
+  checkName: string;
+  checkJob: string;
+}
+let initialValue = null;
+export const usersOfOvenReducer = createReducer<userOfOven>(initialValue,
+  on(setUserOfOven,(state,{users})=>({...users})));

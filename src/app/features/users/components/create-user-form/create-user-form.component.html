@@ -45,9 +45,10 @@
         <ion-item class="form form__item ion-no-padding">
           <ion-label class="form form__label" position="floating">Verifico*</ion-label>
 
-          <ion-select class="form form__select" interface="action-sheet" placeholder="Seleccione nombre"
-            formControlName="nameVerify" (ionChange)="selectNameVerify($event)">
-            <ion-select-option *ngFor="let user of users | async" [value]="user">{{ user.fullName }}</ion-select-option>
+          <ion-select class="form form__select" interface="action-sheet" placeholder="{{(usersOfOvenStore!=null)?users[0].fullName:'Seleccione nombre'}}"
+            formControlName="nameVerify" (ionChange)="selectNameVerify($event)" disabled="{{(usersOfOvenStore!=null)?'true':'false'}}">
+            <ion-select-option *ngFor="let user of users" [value]="(usersOfOvenStore!=null)?users[0].fullName:user">{{ (usersOfOvenStore!=null)?users[0].fullName:user.fullName }}</ion-select-option>
+            
           </ion-select>
         </ion-item>
 
@@ -64,8 +65,11 @@
       <ion-col class="form form__column" size="6">
         <ion-item class="form form__item ion-no-padding">
           <ion-label class="form form__label" position="floating">Puesto*</ion-label>
-          <ion-input class="form form__input" disabled="true" placeholder="{{ job | async }}"
+          <ion-input *ngIf="(usersOfOvenStore==null || usersOfOvenStore.jobElaborated=='')"  class="form form__input" disabled="true" placeholder="{{ job | async }}"
             value="{{ userVerifyJob }}" formControlName="jobVerify">
+          </ion-input>
+          <ion-input  *ngIf="usersOfOvenStore!=null" class="form form__input" disabled="true" 
+            value="{{ users[0].job }}" formControlName="jobCheck">
           </ion-input>
         </ion-item>
 
@@ -83,17 +87,21 @@
       <ion-col class="form form__column" size="6">
         <ion-item class="form form__item">
           <ion-label class="form form__label" position="floating">Realizo*</ion-label>
-          <ion-select class="form form__select" interface="action-sheet" placeholder="Seleccione nombre"
-            formControlName="nameCheck" (ionChange)="selectNameCheck($event)">
-          <ion-select-option *ngFor="let user of users | async" [value]="user">{{ user.fullName }}</ion-select-option>
+          <ion-select class="form form__select" interface="action-sheet" placeholder="{{(usersOfOvenStore!=null)?users[0].fullName:'Seleccione nombre'}}"
+            formControlName="nameCheck" (ionChange)="selectNameCheck($event)" disabled="{{(usersOfOvenStore!=null)?'true':'false'}}">
+            <ion-select-option *ngFor="let user of users" [value]="(usersOfOvenStore!=null)?users[0].fullName:user">{{ (usersOfOvenStore!=null)?users[0].fullName:user.fullName }}</ion-select-option>
+          
         </ion-select>
         </ion-item>
       </ion-col>
       <ion-col class="form form__column" size="6">
         <ion-item class="form form__item ion-no-padding">
           <ion-label class="form form__label" position="floating">Puesto*</ion-label>
-          <ion-input class="form form__input" disabled="true" placeholder="{{ job | async }}"
+          <ion-input *ngIf="(usersOfOvenStore==null || usersOfOvenStore.jobElaborated=='')" class="form form__input" disabled="true" placeholder="{{ job | async }}"
             value="{{ userCheckJob }}" formControlName="jobCheck">
+          </ion-input>
+          <ion-input  *ngIf="usersOfOvenStore!=null" class="form form__input" disabled="true" 
+            value="{{ users[1].job }}" formControlName="jobCheck">
           </ion-input>
         </ion-item>
 

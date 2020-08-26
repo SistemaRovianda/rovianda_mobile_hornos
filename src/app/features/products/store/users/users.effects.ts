@@ -7,6 +7,8 @@ import {
   fetchUsersError,
   registerUsers,
   registerUsersError,
+  getUserOfOven,
+  setUserOfOven,
 } from "./users.actions";
 import { exhaustMap, switchMap, catchError } from "rxjs/operators";
 import { of, forkJoin } from "rxjs";
@@ -48,4 +50,12 @@ export class UsersEffects {
       )
     )
   );
+
+  getUserOfOvenProcess$ = createEffect(()=>
+  this._actions$.pipe(
+    ofType(getUserOfOven),
+    exhaustMap((action)=>this._usersService.getUsersChecked(action.ovenId.toString()).pipe(
+      switchMap((users)=>[setUserOfOven({users})])
+    ))
+  ))
 }

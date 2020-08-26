@@ -10,7 +10,7 @@
 
     <ion-row class="container container__row container__row--form">
       <ion-col class="container container__column" size="12">
-        <create-user-form (onSubmit)="onSubmitUsers($event)"></create-user-form>
+        <create-user-form [ovenId]="ovenId" (onSubmit)="onSubmitUsers($event)"></create-user-form>
       </ion-col>
     </ion-row>
 

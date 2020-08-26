@@ -27,4 +27,6 @@ export interface UsersCheckers {
   jobElaborated: string;
   nameVerify: string;
   jobVerify: string;
+  checkName: string;
+  checkJob: string;
 }

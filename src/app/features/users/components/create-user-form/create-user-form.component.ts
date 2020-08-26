@@ -1,12 +1,14 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { whitespaceValidator } from "src/app/shared/validators/whitespace.validator";
 import { from, Observable } from "rxjs";
 import { Storage } from "@ionic/storage";
 import { UserRegistered } from "src/app/shared/models/user.interface";
-import { Store } from "@ngrx/store";
+import { Store, select } from "@ngrx/store";
 import { AppStateInterface } from "src/app/shared/models/storeState.interface";
-import { usersSelector } from "src/app/features/products/store/users/users.selectors";
+import { usersSelector, usersOfOvenSelector } from "src/app/features/products/store/users/users.selectors";
+import { getUserOfOven } from 'src/app/features/products/store/users/users.actions';
+import { userOfOven } from 'src/app/features/products/store/users/users.reducer';
 
 @Component({
   selector: "create-user-form",
@@ -22,12 +24,15 @@ export class CreateUserFormComponent implements OnInit {
 
   job: Observable<string>;
 
-  users: Observable<UserRegistered[]>;
+  users: UserRegistered[]=[];
 
   userVerifyJob: string;
 
   userCheckJob: string;
 
+  @Input("ovenId") ovenId:number;
+
+  usersOfOvenStore:userOfOven=null;
   constructor(
     private fb: FormBuilder,
     private storage: Storage,
@@ -56,10 +61,33 @@ export class CreateUserFormComponent implements OnInit {
       this.storage.get("job").then((res) => Promise.resolve(res))
     );
 
-    this.users = this.store.select(usersSelector);
+    this.store.select(usersSelector).subscribe((users)=>{
+      this.users = users;
+    });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.store.dispatch(getUserOfOven({ovenId:this.ovenId}));
+    this.store.pipe(select(usersOfOvenSelector)).subscribe((value)=>{
+      this.usersOfOvenStore = value;
+      if(value!=null && value.jobElaborated!=""){
+        this.users = [
+          {
+            fullName: value.nameVerify,
+            job: value.jobVerify,
+            rol: value.jobVerify,
+            userId:"123"
+          },
+          {
+            fullName: value.checkName,
+            job: value.checkJob,
+            rol: value.checkJob,
+            userId:"124"
+          }
+        ];
+      }
+    });
+  }
 
   onSubmit() {
     const {

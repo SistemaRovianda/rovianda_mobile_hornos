@@ -19,6 +19,7 @@ export class CreateUserComponent implements OnInit {
   users;
 
   path: string;
+  ovenId:number;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,7 +32,9 @@ export class CreateUserComponent implements OnInit {
 
   loading$;
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.ovenId = +this.route.snapshot.paramMap.get("id");
+  }
 
   onSubmitUsers(users) {
     this.confirmAddUsers(users);
