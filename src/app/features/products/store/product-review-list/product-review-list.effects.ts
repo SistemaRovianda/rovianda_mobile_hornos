@@ -8,6 +8,8 @@ import { RevisionService } from "src/app/shared/services/revision.service";
 import { ToastService } from "src/app/shared/services/toast.service";
 import { Router } from "@angular/router";
 import { fetchAllProducts } from '../list-products/list-products.actions';
+import { Store } from '@ngrx/store';
+import { AppStateInterface } from 'src/app/shared/models/storeState.interface';
 
 @Injectable({
   providedIn: "root",
@@ -18,7 +20,8 @@ export class DetailReviewListEffects {
     private productsService: ProductService,
     private revisionService: RevisionService,
     private toastService: ToastService,
-    private router: Router
+    private router: Router,
+    private store:Store<AppStateInterface>
   ) {}
 
   products$ = createEffect(() =>
@@ -42,7 +45,7 @@ export class DetailReviewListEffects {
             tap((_) => {
               this.router.navigate(["/product/list"]);
               this.toastService.presentToastSuccess();
-              fetchAllProducts()
+              this.store.dispatch(fetchAllProducts())
             }),
             catchError((error) => this.toastService.presentToastError())
           )
