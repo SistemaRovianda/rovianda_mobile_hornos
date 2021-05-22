@@ -28,9 +28,8 @@ export class NewProductEffects {
       exhaustMap((action) =>
         this.productsService.newProduct(action.product).pipe(
           switchMap((_) => {
-            stepperReset();
             this.toast.presentToastSuccess();
-            return [fromActions.newProductSuccess(),fetchAllProducts()]
+            return [stepperReset(),fromActions.newProductSuccess(),fetchAllProducts()]
           }),
           catchError((error) => {
             this.errorHandler(error)

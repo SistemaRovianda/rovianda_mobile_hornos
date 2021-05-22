@@ -16,7 +16,7 @@ export const fetchAllDetail = createAction(
 
 export const closeOvenProduct = createAction(
   CLOSE_OVEN_PRODUCT,
-  props<{ productId: string }>()
+  props<{ productId: string,observations:string }>()
 );
 
 export const fetchAllDetailSuccess = createAction(

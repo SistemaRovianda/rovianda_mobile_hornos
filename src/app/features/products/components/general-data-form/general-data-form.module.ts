@@ -4,6 +4,7 @@ import { IonicModule } from "@ionic/angular";
 import { ReactiveFormsModule } from "@angular/forms";
 import { GeneralDataFormComponent } from "./general-data-form.component";
 
+
 const COMMON_IMPORTS = [CommonModule, IonicModule, ReactiveFormsModule];
 
 const COMMON_DECLARATIONS = [GeneralDataFormComponent];
@@ -12,5 +13,6 @@ const COMMON_DECLARATIONS = [GeneralDataFormComponent];
   imports: COMMON_IMPORTS,
   declarations: COMMON_DECLARATIONS,
   exports: COMMON_DECLARATIONS,
+  entryComponents:[]
 })
 export class GeneralDataFormModule {}

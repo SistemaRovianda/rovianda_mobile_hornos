@@ -20,10 +20,10 @@ export class RevisionService {
     );
   }
 
-  closedRevision(productId: string): Observable<any> {
+  closedRevision(productId: string,observations:string): Observable<any> {
     return this._http.patch<any>(
       `${this.endpoint}/oven/product/${productId}`,
-      {}
+      {observations}
     );
   }
 }

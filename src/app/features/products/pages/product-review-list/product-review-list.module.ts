@@ -7,6 +7,8 @@ import { RouterModule } from "@angular/router";
 import { StepperModule } from "src/app/shared/components/stepper/stepper.module";
 import { ObservationsDialogModule } from "../../dialogs/observations-dialog/observations-dialog.module";
 import { ProductReviewCardModule } from "../../components/cards/product-review-card/product-review-card.module";
+import { DialogObservationsEndModule } from "../../components/dialog-observations-end/dialog-observations-end.module";
+import { DialogObservationsEndComponent } from "../../components/dialog-observations-end/dialog-observations-end.component";
 
 const COMMON_IMPORTS = [
   CommonModule,
@@ -15,6 +17,7 @@ const COMMON_IMPORTS = [
   RouterModule,
   StepperModule,
   ProductReviewCardModule,
+  DialogObservationsEndModule
 ];
 
 const COMMON_DECLARATIONS = [ProductReviewListPageComponent];
@@ -23,5 +26,6 @@ const COMMON_DECLARATIONS = [ProductReviewListPageComponent];
   imports: COMMON_IMPORTS,
   declarations: COMMON_DECLARATIONS,
   exports: COMMON_DECLARATIONS,
+  entryComponents:[DialogObservationsEndComponent]
 })
 export class ProductReviewListPageModule {}

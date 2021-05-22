@@ -41,7 +41,7 @@ export class DetailReviewListEffects {
       this.actions$.pipe(
         ofType(fromActions.closeOvenProduct),
         exhaustMap((action) =>
-          this.revisionService.closedRevision(action.productId).pipe(
+          this.revisionService.closedRevision(action.productId,action.observations).pipe(
             tap((_) => {
               this.router.navigate(["/product/list"]);
               this.toastService.presentToastSuccess();

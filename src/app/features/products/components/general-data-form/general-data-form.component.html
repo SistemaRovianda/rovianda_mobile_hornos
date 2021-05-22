@@ -76,7 +76,7 @@
           <ion-select class="form form__select" formControlName="newLote" interface="action-sheet"
             placeholder="Seleccione Lote">
             <ion-select-option class="form form__select-option" *ngFor="let l of lotesByProductProcess" [value]="l">
-              {{ l.lotId }}-{{l.dateEndedProcess }}</ion-select-option>
+              Lote del día: {{ l.lotDay }}</ion-select-option>
           </ion-select>
         </ion-item>
 
@@ -135,7 +135,7 @@
             <ion-item class="form form__item">
               <ion-label class="form form__label" position="floating">Ingreso*</ion-label>
               <ion-datetime class="form form__datetime" formControlName="dateEntry" placeholder="dd/mm/yyyy"
-                displayFormat="DD/MM/YYYY">
+                displayFormat="DD/MM/YYYY" [max]="maxDate"> 
               </ion-datetime>
             </ion-item>
             <div class="form form__message-error">

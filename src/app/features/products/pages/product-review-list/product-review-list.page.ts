@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ModalController } from "@ionic/angular";
 import { UsersCheckers } from "src/app/shared/models/user.interface";
 import { SELECT_USERS_CHECKED } from "../../store/usersChecked/users-checked.selectors";
+import { DialogObservationsEndComponent } from "../../components/dialog-observations-end/dialog-observations-end.component";
 
 @Component({
   selector: "app-product-review-list",
@@ -48,11 +49,16 @@ export class ProductReviewListPageComponent implements OnInit {
     return parseInt(this.route.snapshot.paramMap.get("id"));
   }
 
-  endup() {
+  async endup() {
     // this.router.navigate(["/product/list"]);
-    this.store.dispatch(
-      fromDetailActions.closeOvenProduct({ productId: this.id.toString() })
-    );
+    const modal= await this.modalController.create({
+      component: DialogObservationsEndComponent,
+      componentProps: {
+        productId: this.id.toString()
+      }
+    });
+    modal.present();
+    
   }
 
   addUsers() {
