@@ -27,4 +27,9 @@ export class ProductOvenCardComponent implements OnInit {
   detailProduct(index) {
     this.router.navigateByUrl(`/product/${index}`);
   }
+
+  dateParseStr(date:string,hint:string){
+    let dateSplited = date.split(hint);
+    return `${dateSplited[2]}/${dateSplited[1]}/${dateSplited[0]}`;
+  }
 }

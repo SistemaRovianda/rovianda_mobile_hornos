@@ -38,7 +38,7 @@ export class GeneralDataFormComponent implements OnInit {
       pcc: ["", [Validators.required, whitespaceValidator]],
       productId: ["", [Validators.required, whitespaceValidator]],
       date: [
-        { value: moment(new Date()).format("YYYY-MM-DD"), disabled: true },
+        { value: moment(new Date()).format("DD/MM/YYYY"), disabled: true },
       ],
       oven: ["", [Validators.required, whitespaceValidator]],
       assignmentLot: fb.group({
